@@ -97,12 +97,15 @@ else if (hsp != 0)
 		sprite_index = sprPlayerRun;
 		image_speed = run_imagespeed * (hsp / move_speed);
 	}
-	image_xscale = abs(image_xscale) * sign(hsp);
 }
 else if (!key_right && !key_left)
 {
 	sprite_index = sprPlayerIdle;
 	image_speed = sit_imagespeed;
+}
+if sign(hsp) != 0
+{
+	image_xscale = abs(image_xscale) * sign(hsp);
 }
 
 // Move
