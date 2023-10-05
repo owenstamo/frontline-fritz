@@ -1,7 +1,7 @@
 camWidth = 1920;
 camHeight = 1080;
 
-follow = oPlayer;
+follow = objPlayer;
 
 xTo = x
 yTo = y

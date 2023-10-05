@@ -18,32 +18,32 @@ reach_speed *= move;
 
 // Calculate Movement/Acceleration
 
-accelerateBy = move * acceleration;
-decelerateBy = -sign(hsp) * deceleration;
+accelerate_by = move * acceleration;
+decelerate_by = -sign(hsp) * deceleration;
 
 accelerating = (abs(hsp) < abs(reach_speed));
 decelerating = (abs(hsp) > abs(reach_speed));
 
 if (accelerating)
 {
-	if (abs(hsp) + abs(accelerateBy) > abs(reach_speed))
+	if (abs(hsp) + abs(accelerate_by) > abs(reach_speed))
 	{
 		hsp = reach_speed;
 	}
 	else
 	{
-		hsp += accelerateBy;
+		hsp += accelerate_by;
 	}
 } 
 else if (decelerating) 
 {
-	if (abs(hsp) - abs(decelerateBy) < abs(reach_speed))
+	if (abs(hsp) - abs(decelerate_by) < abs(reach_speed))
 	{
 		hsp = reach_speed;
 	}
 	else
 	{
-	hsp += decelerateBy;
+	hsp += decelerate_by;
 	}
 }
 else
@@ -55,47 +55,53 @@ vsp += object_gravity;
 
 // Jump
 
-if (key_jump && place_meeting(x, y+1, oGround))
+if (key_jump && place_meeting(x, y+1, objGround))
 {
 	vsp = -jump_power;
+	jumping = true;
 } 
 
 // Collision
 
-if (place_meeting(x+hsp, y, oGround))
+if (place_meeting(x+hsp, y, objGround))
 {
-	while (!place_meeting(x+sign(hsp), y, oGround)) 
+	while (!place_meeting(x+sign(hsp), y, objGround)) 
 	{
 		x += sign(hsp);
 	}
 	hsp = 0;
 }
 
-if (place_meeting(x, y+vsp, oGround))
+if (place_meeting(x, y+vsp, objGround))
 {
-	while (!place_meeting(x, y+sign(vsp), oGround)) 
+	while (!place_meeting(x, y+sign(vsp), objGround)) 
 	{
 		y += sign(vsp);
 	}
 	vsp = 0;
+	jumping = false;
 }
 
 // Sprite Animation
 
-if (hsp != 0)
+if jumping 
 {
-	sprite_index = sprPlayerW;
+	sprite_index = sprPlayerJump;
+}
+else if (hsp != 0)
+{
+	sprite_index = sprPlayerWalk;
 	image_speed = walk_imagespeed * (hsp / move_speed);
 	if (abs(hsp) > move_speed)
 	{
-		sprite_index = sprPlayerR;
+		sprite_index = sprPlayerRun;
 		image_speed = run_imagespeed * (hsp / move_speed);
 	}
 	image_xscale = abs(image_xscale) * sign(hsp);
 }
 else if (!key_right && !key_left)
 {
-	sprite_index = sprPlayer;
+	sprite_index = sprPlayerIdle;
 	image_speed = sit_imagespeed;
 }
 

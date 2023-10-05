@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "oGround",
+  "name": "objGround",
   "eventList": [],
   "managed": true,
   "overriddenProperties": [],

@@ -17,10 +17,11 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
-    {"name":"sprPlayerW","order":4,"path":"sprites/sprPlayerW/sprPlayerW.yy",},
+    {"name":"sprPlayerWalk","order":4,"path":"sprites/sprPlayerWalk/sprPlayerWalk.yy",},
+    {"name":"sprPlayerJump","order":7,"path":"sprites/sprPlayerJump/sprPlayerJump.yy",},
     {"name":"sprGround","order":3,"path":"sprites/sprGround/sprGround.yy",},
-    {"name":"oCamera","order":2,"path":"objects/oCamera/oCamera.yy",},
-    {"name":"oGround","order":1,"path":"objects/oGround/oGround.yy",},
-    {"name":"sprPlayerR","order":5,"path":"sprites/sprPlayerR/sprPlayerR.yy",},
+    {"name":"objCamera","order":2,"path":"objects/objCamera/objCamera.yy",},
+    {"name":"objGround","order":1,"path":"objects/objGround/objGround.yy",},
+    {"name":"sprPlayerRun","order":5,"path":"sprites/sprPlayerRun/sprPlayerRun.yy",},
   ],
 }
