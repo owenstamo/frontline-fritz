@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objGround",
+  "name": "objChair",
   "eventList": [],
   "managed": true,
   "overriddenProperties": [],
@@ -26,8 +26,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprGround",
-    "path": "sprites/sprGround/sprGround.yy",
+    "name": "sprChair",
+    "path": "sprites/sprChair/sprChair.yy",
   },
   "spriteMaskId": null,
   "visible": true,
