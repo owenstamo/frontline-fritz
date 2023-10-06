@@ -101,6 +101,25 @@ if (place_meeting(x, y+phy_speed_y, objGround))
 */
 #endregion
 
+#region Stairs ###(fix)###
+
+if (place_meeting(x + hsp, y, objAllCollidable))
+{
+	var instance = instance_place(x + hsp, y, objAllCollidable);
+	
+	if (instance)
+	{
+		show_debug_message("instance exists")
+	}
+	
+	if (collision_point(instance.x, instance.y - 20, objAllCollidable, false, true) == noone)
+	{
+		y = instance.y - (instance.sprite_height / 2);
+	}
+}
+
+#endregion
+
 #region Sprite Animation	
 
 if (!grounded)
