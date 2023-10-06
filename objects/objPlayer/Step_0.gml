@@ -59,6 +59,7 @@ if (key_jump && place_meeting(x, y+1, objGround))
 {
 	vsp = -jump_power;
 	jumping = true;
+	image_index = 0;
 } 
 
 // Collision
@@ -84,9 +85,16 @@ if (place_meeting(x, y+vsp, objGround))
 
 // Sprite Animation
 
+jump_last_index = sprite_get_number(sprPlayerJump) - 1;
+
 if jumping 
 {
 	sprite_index = sprPlayerJump;
+	image_speed = jump_imagespeed;
+	if (floor(image_index) == jump_last_index)
+	{
+		image_index = jump_last_index;
+	}
 }
 else if (hsp != 0)
 {
@@ -103,6 +111,7 @@ else if (!key_right && !key_left)
 	sprite_index = sprPlayerIdle;
 	image_speed = sit_imagespeed;
 }
+
 if sign(hsp) != 0
 {
 	image_xscale = abs(image_xscale) * sign(hsp);
