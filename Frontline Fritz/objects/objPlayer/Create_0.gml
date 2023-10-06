@@ -7,3 +7,6 @@ hsp = 0;
 vsp = 0;
 // Whether or not the player is touching the ground
 grounded = true;
+
+// Stop this object from rotating
+phy_fixed_rotation = true;

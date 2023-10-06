@@ -21,103 +21,106 @@ _reach_speed *= _move;
 #region Calculate Movement/Acceleration
 
 var _accelerate_by = _move * acceleration;
-var _decelerate_by = -sign(hsp) * deceleration;
+var _decelerate_by = -sign(phy_speed_x) * deceleration;
 
-var _accelerating = (abs(hsp) < abs(_reach_speed));
-var _decelerating = (abs(hsp) > abs(_reach_speed));
+var _accelerating = (abs(phy_speed_x) < abs(_reach_speed));
+var _decelerating = (abs(phy_speed_x) > abs(_reach_speed));
 
 if (_accelerating)
 {
-	if (abs(hsp) + abs(_accelerate_by) > abs(_reach_speed))
+	if (abs(phy_speed_x) + abs(_accelerate_by) > abs(_reach_speed))
 	{
-		hsp = _reach_speed;
+		phy_speed_x = _reach_speed;
 	}
 	else
 	{
-		hsp += _accelerate_by;
+		phy_speed_x += _accelerate_by;
 	}
 } 
 else if (_decelerating) 
 {
-	if (abs(hsp) - abs(_decelerate_by) < abs(_reach_speed))
+	if (abs(phy_speed_x) - abs(_decelerate_by) < abs(_reach_speed))
 	{
-		hsp = _reach_speed;
+		phy_speed_x = _reach_speed;
 	}
 	else
 	{
-	hsp += _decelerate_by;
+	phy_speed_x += _decelerate_by;
 	}
 }
 else
 {
-	hsp = _reach_speed;
+	phy_speed_x = _reach_speed;
 }
 
-vsp += object_gravity;
-if (vsp > 2 * object_gravity || vsp < 0) {
+if (phy_speed_y != 0)
 	grounded = false;
-}
 
 #endregion
 
 #region Jump
 
-if (_key_jump && place_meeting(x, y+1, objGround))
+// For some reason, if the player is against the wall, place_meeting returns true (but not for the ground??), 
+// so adding 1 to the x value ensures it doesn't return true when against the left wall, and vise versa for the right. 
+// Thus, when combining these, the player must be against the left *and* right wall (which is mostly impossible) for this problem to occur
+if (place_meeting(x + 1, y + 1, objAllCollidable) && place_meeting(x - 1, y + 1, objAllCollidable))
+	grounded = true;
+
+if (_key_jump && grounded)
 {
-	vsp = -jump_power;
-	image_index = 0;
-} 
+	phy_speed_y = -jump_power;
+	grounded = false;
+}
 
 #endregion
 
-#region Collision
-
-if (place_meeting(x+hsp, y, objGround))
+#region Collision (no longer in use)
+/*
+if (place_meeting(x+phy_speed_x, y, objGround))
 {
-	while (!place_meeting(x+sign(hsp), y, objGround)) 
+	while (!place_meeting(x+sign(phy_speed_x), y, objGround)) 
 	{
-		x += sign(hsp);
+		x += sign(phy_speed_x);
 	}
-	hsp = 0;
+	phy_speed_x = 0;
 }
 
-if (place_meeting(x, y+vsp, objGround))
+if (place_meeting(x, y+phy_speed_y, objGround))
 {
-	while (!place_meeting(x, y+sign(vsp), objGround)) 
+	while (!place_meeting(x, y+sign(phy_speed_y), objGround)) 
 	{
-		y += sign(vsp);
+		y += sign(phy_speed_y);
 	}
 	
-	if (vsp > 0) {
+	if (phy_speed_y > 0) {
 		grounded = true;
 	}
 	
-	vsp = 0;
+	phy_speed_y = 0;
 }
-
+*/
 #endregion
 
 #region Sprite Animation	
 
 if (!grounded)
 {
-	if (vsp < -2) {
+	if (phy_speed_y < -4.5)	
 		sprite_index = sprPlayerJumpAscending;
-	} else if (vsp > 8) {
+	else if (phy_speed_y > 6)
 		sprite_index = sprPlayerJumpDescending;
-	} else {
+	else
 		sprite_index = sprPlayerJumpPeak;
-	}
 }
-else if (hsp != 0 || _key_left || _key_right)
+else if (phy_speed_x != 0 || _key_left || _key_right)
 {
 	var _min_image_speed = 1;
 	sprite_index  = sprPlayerWalk;
-	image_speed = max(abs(walk_imagespeed * (hsp / move_speed)), _min_image_speed);
+	image_speed = max(abs(walk_imagespeed * (phy_speed_x / move_speed)), _min_image_speed);
 	if (_key_shift)
 	{
 		sprite_index = sprPlayerRun;
-		image_speed = max(abs(run_imagespeed * (hsp / move_speed)), _min_image_speed);
+		image_speed = max(abs(run_imagespeed * (phy_speed_x / move_speed)), _min_image_speed);
 	}
 }
 else
@@ -126,16 +129,9 @@ else
 	image_speed = sit_imagespeed;
 }
 
-if (sign(hsp)) != 0
+if (sign(phy_speed_x)) != 0
 {
-	image_xscale = abs(image_xscale) * sign(hsp);
+	image_xscale = abs(image_xscale) * sign(phy_speed_x);
 }
-
-#endregion
-
-#region Move
-
-x += hsp;
-y += vsp;
 
 #endregion

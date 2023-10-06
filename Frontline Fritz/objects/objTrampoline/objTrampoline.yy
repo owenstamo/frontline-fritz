@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objTable",
+  "name": "objTrampoline",
   "eventList": [],
   "managed": true,
   "overriddenProperties": [],
@@ -21,7 +21,7 @@
   "physicsKinematic": false,
   "physicsLinearDamping": 0.1,
   "physicsObject": true,
-  "physicsRestitution": 0.0,
+  "physicsRestitution": 0.95,
   "physicsSensor": false,
   "physicsShape": 1,
   "physicsShapePoints": [
@@ -36,8 +36,8 @@
   ],
   "solid": false,
   "spriteId": {
-    "name": "sprTable",
-    "path": "sprites/sprTable/sprTable.yy",
+    "name": "sprTrampolinePlaceholder",
+    "path": "sprites/sprTrampolinePlaceholder/sprTrampolinePlaceholder.yy",
   },
   "spriteMaskId": null,
   "visible": true,
