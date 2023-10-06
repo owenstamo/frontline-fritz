@@ -19,9 +19,11 @@
   "ResourceOrderSettings": [
     {"name":"sprPlayerWalk","order":4,"path":"sprites/sprPlayerWalk/sprPlayerWalk.yy",},
     {"name":"sprPlayerJump","order":7,"path":"sprites/sprPlayerJump/sprPlayerJump.yy",},
+    {"name":"objTable","order":3,"path":"objects/objTable/objTable.yy",},
     {"name":"sprGround","order":3,"path":"sprites/sprGround/sprGround.yy",},
     {"name":"objCamera","order":2,"path":"objects/objCamera/objCamera.yy",},
     {"name":"objGround","order":1,"path":"objects/objGround/objGround.yy",},
+    {"name":"sprTable","order":8,"path":"sprites/sprTable/sprTable.yy",},
     {"name":"sprPlayerRun","order":5,"path":"sprites/sprPlayerRun/sprPlayerRun.yy",},
   ],
 }
