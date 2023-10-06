@@ -5,5 +5,5 @@
 hsp = 0;
 // Vertical speed
 vsp = 0;
-// Whether the player is mid-jump or not
-jumping = false;
+// Whether or not the player is touching the ground
+grounded = true;

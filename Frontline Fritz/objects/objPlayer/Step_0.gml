@@ -1,68 +1,76 @@
-// Initialize
+#region Get keys down
 
-key_right = (keyboard_check(ord("D")) || keyboard_check(vk_right));
-key_left = (keyboard_check(ord("A")) || keyboard_check(vk_left));
-key_shift = keyboard_check(vk_lshift);
-key_jump = keyboard_check(vk_space);
+var _key_right = (keyboard_check(ord("D")) || keyboard_check(vk_right));
+var _key_left = (keyboard_check(ord("A")) || keyboard_check(vk_left));
+var _key_shift = keyboard_check(vk_lshift);
+var _key_jump = keyboard_check(vk_space);
 
-reach_speed = move_speed;
+#endregion
 
-// Sprint
+#region Calculate Target Speed
 
-if (key_shift) reach_speed = sprint_speed;
+var _reach_speed = move_speed;
 
-// Calculate Target Speed
+if (_key_shift) _reach_speed = sprint_speed;
 
-var move = key_right - key_left;
-reach_speed *= move;
+var _move = _key_right - _key_left;
+_reach_speed *= _move;
 
-// Calculate Movement/Acceleration
+#endregion
 
-accelerate_by = move * acceleration;
-decelerate_by = -sign(hsp) * deceleration;
+#region Calculate Movement/Acceleration
 
-accelerating = (abs(hsp) < abs(reach_speed));
-decelerating = (abs(hsp) > abs(reach_speed));
+var _accelerate_by = _move * acceleration;
+var _decelerate_by = -sign(hsp) * deceleration;
 
-if (accelerating)
+var _accelerating = (abs(hsp) < abs(_reach_speed));
+var _decelerating = (abs(hsp) > abs(_reach_speed));
+
+if (_accelerating)
 {
-	if (abs(hsp) + abs(accelerate_by) > abs(reach_speed))
+	if (abs(hsp) + abs(_accelerate_by) > abs(_reach_speed))
 	{
-		hsp = reach_speed;
+		hsp = _reach_speed;
 	}
 	else
 	{
-		hsp += accelerate_by;
+		hsp += _accelerate_by;
 	}
 } 
-else if (decelerating) 
+else if (_decelerating) 
 {
-	if (abs(hsp) - abs(decelerate_by) < abs(reach_speed))
+	if (abs(hsp) - abs(_decelerate_by) < abs(_reach_speed))
 	{
-		hsp = reach_speed;
+		hsp = _reach_speed;
 	}
 	else
 	{
-	hsp += decelerate_by;
+	hsp += _decelerate_by;
 	}
 }
 else
 {
-	hsp = reach_speed;
+	hsp = _reach_speed;
 }
 
 vsp += object_gravity;
+if (vsp > 2 * object_gravity || vsp < 0) {
+	grounded = false;
+}
 
-// Jump
+#endregion
 
-if (key_jump && place_meeting(x, y+1, objGround))
+#region Jump
+
+if (_key_jump && place_meeting(x, y+1, objGround))
 {
 	vsp = -jump_power;
-	jumping = true;
 	image_index = 0;
 } 
 
-// Collision
+#endregion
+
+#region Collision
 
 if (place_meeting(x+hsp, y, objGround))
 {
@@ -79,45 +87,55 @@ if (place_meeting(x, y+vsp, objGround))
 	{
 		y += sign(vsp);
 	}
+	
+	if (vsp > 0) {
+		grounded = true;
+	}
+	
 	vsp = 0;
-	jumping = false;
 }
 
-// Sprite Animation
+#endregion
 
-jump_last_index = sprite_get_number(sprPlayerJump) - 1;
+#region Sprite Animation	
 
-if jumping 
+if (!grounded)
 {
-	sprite_index = sprPlayerJump;
-	image_speed = jump_imagespeed;
-	if (floor(image_index) == jump_last_index)
-	{
-		image_index = jump_last_index;
+	if (vsp < -2) {
+		sprite_index = sprPlayerJumpAscending;
+	} else if (vsp > 8) {
+		sprite_index = sprPlayerJumpDescending;
+	} else {
+		sprite_index = sprPlayerJumpPeak;
 	}
 }
-else if (hsp != 0)
+else if (hsp != 0 || _key_left || _key_right)
 {
-	sprite_index = sprPlayerWalk;
-	image_speed = walk_imagespeed * (hsp / move_speed);
-	if (abs(hsp) > move_speed)
+	var _min_image_speed = 1;
+	sprite_index  = sprPlayerWalk;
+	image_speed = max(abs(walk_imagespeed * (hsp / move_speed)), _min_image_speed);
+	if (_key_shift)
 	{
 		sprite_index = sprPlayerRun;
-		image_speed = run_imagespeed * (hsp / move_speed);
+		image_speed = max(abs(run_imagespeed * (hsp / move_speed)), _min_image_speed);
 	}
 }
-else if (!key_right && !key_left)
+else
 {
 	sprite_index = sprPlayerIdle;
 	image_speed = sit_imagespeed;
 }
 
-if sign(hsp) != 0
+if (sign(hsp)) != 0
 {
 	image_xscale = abs(image_xscale) * sign(hsp);
 }
 
-// Move
+#endregion
+
+#region Move
 
 x += hsp;
 y += vsp;
+
+#endregion
