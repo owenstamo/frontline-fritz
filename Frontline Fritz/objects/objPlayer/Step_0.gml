@@ -4,6 +4,7 @@ var _key_right = (keyboard_check(ord("D")) || keyboard_check(vk_right));
 var _key_left = (keyboard_check(ord("A")) || keyboard_check(vk_left));
 var _key_shift = keyboard_check(vk_lshift);
 var _key_jump = keyboard_check(vk_space);
+var _key_crouch = keyboard_check_pressed(ord("C"));
 
 #endregion
 
@@ -15,6 +16,18 @@ if (_key_shift) _reach_speed = sprint_speed;
 
 var _move = _key_right - _key_left;
 _reach_speed *= _move;
+
+#endregion
+
+#region Crouch
+
+if (_key_crouch) {
+	crouching = !crouching;
+}
+
+if (crouching) {
+	_reach_speed /= 2;
+}
 
 #endregion
 
@@ -136,7 +149,7 @@ else if (phy_speed_x != 0 || _key_left || _key_right)
 	var _min_image_speed = 1;
 	sprite_index  = sprPlayerWalk;
 	image_speed = max(abs(walk_imagespeed * (phy_speed_x / move_speed)), _min_image_speed);
-	if (_key_shift)
+	if (_key_shift && !crouching)
 	{
 		sprite_index = sprPlayerRun;
 		image_speed = max(abs(run_imagespeed * (phy_speed_x / move_speed)), _min_image_speed);

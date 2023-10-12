@@ -7,6 +7,8 @@ hsp = 0;
 vsp = 0;
 // Whether or not the player is touching the ground
 grounded = true;
+// Whether or not the player is crouching
+crouching = false;
 
 // Stop this object from rotating
 phy_fixed_rotation = true;
