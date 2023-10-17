@@ -39,6 +39,9 @@ var _decelerate_by = -sign(phy_speed_x) * deceleration;
 var _accelerating = (abs(phy_speed_x) < abs(_reach_speed));
 var _decelerating = (abs(phy_speed_x) > abs(_reach_speed));
 
+if (place_meeting(x, y + 1, objAllCollidable))
+	grounded = true;
+
 if (_accelerating)
 {
 	if (abs(phy_speed_x) + abs(_accelerate_by) > abs(_reach_speed))
@@ -72,12 +75,6 @@ if (phy_speed_y != 0)
 #endregion
 
 #region Jump
-
-// For some reason, if the player is against the wall, place_meeting returns true (but not for the ground??), 
-// so adding 1 to the x value ensures it doesn't return true when against the left wall, and vise versa for the right. 
-// Thus, when combining these, the player must be against the left *and* right wall (which is mostly impossible) for this problem to occur
-if (place_meeting(x + 1, y + 1, objAllCollidable) && place_meeting(x - 1, y + 1, objAllCollidable))
-	grounded = true;
 
 if (_key_jump && grounded)
 {
