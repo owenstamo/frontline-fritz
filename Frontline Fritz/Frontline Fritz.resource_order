@@ -42,9 +42,10 @@
     {"name":"Menu","order":1,"path":"rooms/Menu/Menu.yy",},
     {"name":"objChair","order":6,"path":"objects/objChair/objChair.yy",},
     {"name":"sprTable","order":8,"path":"sprites/sprTable/sprTable.yy",},
-    {"name":"objAllCollidable","order":2,"path":"objects/objAllCollidable/objAllCollidable.yy",},
-    {"name":"objDynamicObject","order":1,"path":"objects/objDynamicObject/objDynamicObject.yy",},
+    {"name":"objPassableObjectParent","order":2,"path":"objects/objPassableObjectParent/objPassableObjectParent.yy",},
+    {"name":"objImpassableObjectParent","order":1,"path":"objects/objImpassableObjectParent/objImpassableObjectParent.yy",},
     {"name":"objTrampoline","order":5,"path":"objects/objTrampoline/objTrampoline.yy",},
     {"name":"sprPlayerRun","order":5,"path":"sprites/sprPlayerRun/sprPlayerRun.yy",},
+    {"name":"objForegroundObjectParent","order":3,"path":"objects/objForegroundObjectParent/objForegroundObjectParent.yy",},
   ],
 }

@@ -1,18 +1,18 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objDynamicObject",
-  "eventList": [],
+  "name": "objImpassableObjectParent",
+  "eventList": [
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"objPassableObjectParent","path":"objects/objPassableObjectParent/objPassableObjectParent.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","eventNum":0,"eventType":4,"isDnD":false,},
+  ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
     "name": "Physics Object Types",
     "path": "folders/Objects/Physics Object Types.yy",
   },
-  "parentObjectId": {
-    "name": "objAllCollidable",
-    "path": "objects/objAllCollidable/objAllCollidable.yy",
-  },
+  "parentObjectId": null,
   "persistent": false,
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.5,

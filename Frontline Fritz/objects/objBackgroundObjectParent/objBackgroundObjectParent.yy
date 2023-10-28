@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objAllCollidable",
+  "name": "objBackgroundObjectParent",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","eventNum":0,"eventType":4,"isDnD":false,},
   ],
@@ -23,12 +23,7 @@
   "physicsRestitution": 0.1,
   "physicsSensor": false,
   "physicsShape": 1,
-  "physicsShapePoints": [
-    {"x":0.0,"y":0.0,},
-    {"x":32.0,"y":0.0,},
-    {"x":32.0,"y":32.0,},
-    {"x":0.0,"y":32.0,},
-  ],
+  "physicsShapePoints": [],
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,

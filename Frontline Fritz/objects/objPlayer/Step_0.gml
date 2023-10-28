@@ -10,12 +10,17 @@ var _key_crouch = keyboard_check_pressed(ord("C"));
 
 #region Calculate Target Speed
 
-var _reach_speed = move_speed;
+var _target_speed = move_speed;
 
-if (_key_shift) _reach_speed = sprint_speed;
+// Walk/move speed midair is different so jumping feels more like a leap than just levitating,
+// and because going from sprint to walk while midair was such a large and fast change that it was a bit jarring and unrealistic
+if (!grounded) _target_speed = move_speed_midair;
 
-var _move = _key_right - _key_left;
-_reach_speed *= _move;
+if (_key_shift) _target_speed = sprint_speed;
+
+var _target_direction = _key_right - _key_left
+
+var _target_velocity = _target_direction * _target_speed;
 
 #endregion
 
@@ -26,52 +31,73 @@ if (_key_crouch) {
 }
 
 if (crouching) {
-	_reach_speed /= 2;
+    if (_key_crouch) {
+		// This doesn't work, but I'm keeping it in case it does in the future
+        physics_remove_fixture(self, currently_bound_fix);
+        currently_bound_fix = physics_fixture_bind(crouch_fix, self);
+    }
+    _target_velocity /= 2;
 }
+else if (!crouching && _key_crouch) {
+	// Same for this
+    physics_remove_fixture(self, currently_bound_fix);
+    currently_bound_fix = physics_fixture_bind(default_fix, self);
+}
+
+#endregion
+
+#region Check grounded
+
+if (place_meeting(x, y + 1, objImpassableObjectParent))
+	grounded = true;
+	
+if (phy_speed_y != 0)
+	grounded = false;
 
 #endregion
 
 #region Calculate Movement/Acceleration
 
-var _accelerate_by = _move * acceleration;
-var _decelerate_by = -sign(phy_speed_x) * deceleration;
+var _previous_x_speed = phy_speed_x;
 
-var _accelerating = (abs(phy_speed_x) < abs(_reach_speed));
-var _decelerating = (abs(phy_speed_x) > abs(_reach_speed));
+var _accelerating = (phy_speed_x < _target_velocity && phy_speed_x >= 0) ||
+                    (_target_velocity < phy_speed_x && phy_speed_x <= 0)
 
-if (place_meeting(x, y + 1, objAllCollidable))
-	grounded = true;
-
-if (_accelerating)
-{
-	if (abs(phy_speed_x) + abs(_accelerate_by) > abs(_reach_speed))
-	{
-		phy_speed_x = _reach_speed;
-	}
-	else
-	{
-		phy_speed_x += _accelerate_by;
-	}
-} 
-else if (_decelerating) 
-{
-	if (abs(phy_speed_x) - abs(_decelerate_by) < abs(_reach_speed))
-	{
-		phy_speed_x = _reach_speed;
-	}
-	else
-	{
-	phy_speed_x += _decelerate_by;
+var _decelerating = (_target_velocity < phy_speed_x && phy_speed_x > 0) ||
+                    (phy_speed_x < _target_velocity && phy_speed_x < 0)
+				
+if (!grounded && _target_direction == 0) {
+	phy_speed_x -= midair_speed_decay * sign(phy_speed_x);
+} else {
+	if (_accelerating) {
+		phy_speed_x += acceleration_magnitude * sign(_target_velocity - phy_speed_x);
+	} 
+	if (_decelerating) {
+		var _deceleration_magnitude = grounded ? deceleration_magnitude : deceleration_magnitude_midair;
+		phy_speed_x += _deceleration_magnitude * sign(_target_velocity - phy_speed_x);
 	}
 }
-else
-{
-	phy_speed_x = _reach_speed;
+
+// If the speed passed the target velocity, set it to the target velocity
+if (sign(_previous_x_speed - _target_velocity) != sign(phy_speed_x - _target_velocity)) {
+	phy_speed_x = _target_velocity;
 }
 
-if (phy_speed_y != 0)
-	grounded = false;
+/*
+// Clamp the magnitude of friction acceleration to be at most the x velocity, so that it doesn't overshoot and increase/decrease speed past zero
+var _accel_from_friction = min(abs(friction_acceleration), abs(phy_speed_x));
 
+//Clamp the magnitude of walking acceleration so that it--summed with the friction accel.--won't cause the speed to exceed the target speed (but don't let it go below 0)
+var _accel_from_walking = max(min(_target_speed - _accel_from_friction - abs(phy_speed_x), walking_acceleration), 0);
+
+phy_speed_x += _accel_from_walking * sign(_target_velocity) +
+			   _accel_from_friction * -sign(phy_speed_x);
+			
+			
+show_debug_message(_accel_from_friction);
+*/
+
+			   
 #endregion
 
 #region Jump
@@ -113,18 +139,18 @@ if (place_meeting(x, y+phy_speed_y, objGround))
 
 #region Stairs ###(fix)###
 
-if (place_meeting(x + hsp, y, objAllCollidable))
+if (place_meeting(x + hsp, y, objImpassableObjectParent))
 {
-	var instance = instance_place(x + hsp, y, objAllCollidable);
+	var _instance = instance_place(x + hsp, y, objImpassableObjectParent);
 	
-	if (instance)
+	if (_instance)
 	{
 		show_debug_message("instance exists")
 	}
 	
-	if (collision_point(instance.x, instance.y - 20, objAllCollidable, false, true) == noone)
+	if (collision_point(_instance.x, _instance.y - 20, objImpassableObjectParent, false, true) == noone)
 	{
-		y = instance.y - (instance.sprite_height / 2);
+		y = _instance.y - (_instance.sprite_height / 2);
 	}
 }
 

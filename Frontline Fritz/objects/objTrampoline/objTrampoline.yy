@@ -10,8 +10,8 @@
     "path": "folders/Objects.yy",
   },
   "parentObjectId": {
-    "name": "objStaticObject",
-    "path": "objects/objStaticObject/objStaticObject.yy",
+    "name": "objImpassableObjectParent",
+    "path": "objects/objImpassableObjectParent/objImpassableObjectParent.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,
