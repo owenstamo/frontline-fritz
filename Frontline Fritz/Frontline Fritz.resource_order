@@ -19,7 +19,7 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
-    {"name":"sprPlayerWalk","order":4,"path":"sprites/sprPlayerWalk/sprPlayerWalk.yy",},
+    {"name":"sprPlayerCrouch","order":4,"path":"sprites/sprPlayerCrouch/sprPlayerCrouch.yy",},
     {"name":"objButtonQuit","order":10,"path":"objects/objButtonQuit/objButtonQuit.yy",},
     {"name":"sprChair","order":13,"path":"sprites/sprChair/sprChair.yy",},
     {"name":"sprPlayerJumpDescending","order":2,"path":"sprites/sprPlayerJumpDescending/sprPlayerJumpDescending.yy",},
@@ -33,6 +33,7 @@
     {"name":"sndMeow2","order":1,"path":"sounds/sndMeow2/sndMeow2.yy",},
     {"name":"objBackground","order":7,"path":"objects/objBackground/objBackground.yy",},
     {"name":"objMeow","order":13,"path":"objects/objMeow/objMeow.yy",},
+    {"name":"sprPlayerWalk","order":17,"path":"sprites/sprPlayerWalk/sprPlayerWalk.yy",},
     {"name":"sprBackground","order":14,"path":"sprites/sprBackground/sprBackground.yy",},
     {"name":"objButtonPlay","order":9,"path":"objects/objButtonPlay/objButtonPlay.yy",},
     {"name":"sprTrampolinePlaceholder","order":12,"path":"sprites/sprTrampolinePlaceholder/sprTrampolinePlaceholder.yy",},

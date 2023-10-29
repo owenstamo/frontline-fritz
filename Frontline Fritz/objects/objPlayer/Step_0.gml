@@ -82,21 +82,6 @@ if (!grounded && _target_direction == 0) {
 if (sign(_previous_x_speed - _target_velocity) != sign(phy_speed_x - _target_velocity)) {
 	phy_speed_x = _target_velocity;
 }
-
-/*
-// Clamp the magnitude of friction acceleration to be at most the x velocity, so that it doesn't overshoot and increase/decrease speed past zero
-var _accel_from_friction = min(abs(friction_acceleration), abs(phy_speed_x));
-
-//Clamp the magnitude of walking acceleration so that it--summed with the friction accel.--won't cause the speed to exceed the target speed (but don't let it go below 0)
-var _accel_from_walking = max(min(_target_speed - _accel_from_friction - abs(phy_speed_x), walking_acceleration), 0);
-
-phy_speed_x += _accel_from_walking * sign(_target_velocity) +
-			   _accel_from_friction * -sign(phy_speed_x);
-			
-			
-show_debug_message(_accel_from_friction);
-*/
-
 			   
 #endregion
 
@@ -169,14 +154,24 @@ if (!grounded)
 }
 else if (phy_speed_x != 0 || _key_left || _key_right)
 {
-	var _min_image_speed = 1;
+	var _min_image_speed = 0.5;
+	var _image_speed_multiplier = walk_imagespeed;
 	sprite_index  = sprPlayerWalk;
-	image_speed = max(abs(walk_imagespeed * (phy_speed_x / move_speed)), _min_image_speed);
-	if (_key_shift && !crouching)
+	if (crouching) {
+		sprite_index = sprPlayerCrouch;
+		_image_speed_multiplier = crouch_imagespeed;
+	}
+	else if (_key_shift)
 	{
 		sprite_index = sprPlayerRun;
-		image_speed = max(abs(run_imagespeed * (phy_speed_x / move_speed)), _min_image_speed);
+		_image_speed_multiplier = run_imagespeed;
 	}
+	image_speed = _image_speed_multiplier * max(abs(phy_speed_x / move_speed), _min_image_speed);
+}
+else if (crouching) {
+	sprite_index = sprPlayerCrouch;
+	image_speed = 0;
+	image_index = 2;
 }
 else
 {
