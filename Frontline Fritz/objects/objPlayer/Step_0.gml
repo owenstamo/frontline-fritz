@@ -18,6 +18,7 @@ if (sprinting && (!_key_left && !_key_right ||
 }
 sprinting = _key_shift;
 if (!_key_left && !_key_right || _key_left && _key_right) sprinting = false;
+show_debug_message(sprinting);
 
 #region Calculate Target Speed
 
@@ -94,6 +95,8 @@ if (!grounded && _target_direction == 0) {
 // If the speed passed the target velocity, set it to the target velocity
 if (sign(_previous_x_speed - _target_velocity) != sign(phy_speed_x - _target_velocity)) {
 	phy_speed_x = _target_velocity;
+}
+if (phy_speed_x == _target_velocity) {
 	braking_or_turning = false;
 }
 			   
@@ -169,14 +172,15 @@ if (!grounded)
 }
 else if (braking_or_turning) {
 	if (sign(phy_speed_x) == sign(started_braking_at_speed)) {
-		if (abs(phy_speed_x) > abs(started_braking_at_speed) * 0.66)
-			sprite_index = sprPlayerBrake1;
-		else if (abs(phy_speed_x) > abs(started_braking_at_speed) * 0.33)
-			sprite_index = sprPlayerBrake2;
-		else
+		if (abs(phy_speed_x) < abs(started_braking_at_speed) * 0.2)
 			sprite_index = sprPlayerBrake3;
+		else if (abs(phy_speed_x) < abs(started_braking_at_speed) * 0.4)
+			sprite_index = cat_brake_Sheet1616;
+		else if (abs(phy_speed_x) < abs(started_braking_at_speed) * 0.6)
+			sprite_index = sprPlayerBrake1;
 			
-		image_xscale = abs(image_xscale) * sign(phy_speed_x);
+		if (phy_speed_x != 0)
+			image_xscale = abs(image_xscale) * sign(phy_speed_x);
 
 	} else {
 		if (abs(phy_speed_x) < _target_speed * 0.25)
@@ -188,7 +192,8 @@ else if (braking_or_turning) {
 		else
 			sprite_index = sprPlayerTurn4;
 			
-		image_xscale = -abs(image_xscale) * sign(phy_speed_x);
+		if (phy_speed_x != 0)
+			image_xscale = -abs(image_xscale) * sign(phy_speed_x);
 	}
 }
 else if ((phy_speed_x != 0 || _key_left || _key_right) && !(_key_left && _key_right))

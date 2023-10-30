@@ -17,7 +17,7 @@
     {"name":"txgPlayerJump","order":11,"path":"folders/Sprites/txgPlayerJump.yy",},
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
-    {"name":"txgCatBrakeOrTurn","order":18,"path":"folders/Sprites/txgCatBrakeOrTurn.yy",},
+    {"name":"group1","order":18,"path":"folders/Sprites/group1.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"sprPlayerCrouch","order":4,"path":"sprites/sprPlayerCrouch/sprPlayerCrouch.yy",},
@@ -25,7 +25,7 @@
     {"name":"sprPlayerBrake1","order":1,"path":"sprites/sprPlayerBrake1/sprPlayerBrake1.yy",},
     {"name":"sprChair","order":13,"path":"sprites/sprChair/sprChair.yy",},
     {"name":"sprPlayerJumpDescending","order":2,"path":"sprites/sprPlayerJumpDescending/sprPlayerJumpDescending.yy",},
-    {"name":"sprPlayerBrake2","order":2,"path":"sprites/sprPlayerBrake2/sprPlayerBrake2.yy",},
+    {"name":"cat_brake_Sheet1616","order":2,"path":"sprites/cat_brake_Sheet1616/cat_brake_Sheet1616.yy",},
     {"name":"sprMenuButton","order":16,"path":"sprites/sprMenuButton/sprMenuButton.yy",},
     {"name":"objTable","order":3,"path":"objects/objTable/objTable.yy",},
     {"name":"Sprite12","order":15,"path":"sprites/Sprite12/Sprite12.yy",},
