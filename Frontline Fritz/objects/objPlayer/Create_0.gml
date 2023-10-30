@@ -9,6 +9,18 @@ vsp = 0;
 grounded = true;
 // Whether or not the player is crouching
 crouching = false;
+// Whether or not the player is sprinting
+sprinting = false;
+
+// Whether or not the player is braking/quickly turning around
+braking_or_turning = false;
+// The speed the player was at when they started braking/quickly turning around
+started_braking_at_speed = 0;
+
+// Whether or not the player was holding the left key in the previous step
+prev_key_left = false;
+// Whether or not the player was holding the right key in the previous step
+prev_key_right = false;
 
 // Stop this object from rotating
 phy_fixed_rotation = true;

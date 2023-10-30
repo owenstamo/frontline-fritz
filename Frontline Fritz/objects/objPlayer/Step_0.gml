@@ -8,6 +8,17 @@ var _key_crouch = keyboard_check_pressed(ord("C"));
 
 #endregion
 
+if (sprinting && (!_key_left && !_key_right || 
+				  _key_left && _key_right ||
+				  !_key_left && prev_key_left && _key_right || 
+				  !_key_right && prev_key_right && _key_left)) {
+	// If the player just stopped sprinting:
+	braking_or_turning = true;
+	started_braking_at_speed = phy_speed_x;
+}
+sprinting = _key_shift;
+if (!_key_left && !_key_right || _key_left && _key_right) sprinting = false;
+
 #region Calculate Target Speed
 
 var _target_speed = move_speed;
@@ -16,7 +27,7 @@ var _target_speed = move_speed;
 // and because going from sprint to walk while midair was such a large and fast change that it was a bit jarring and unrealistic
 if (!grounded) _target_speed = move_speed_midair;
 
-if (_key_shift) _target_speed = sprint_speed;
+if (sprinting) _target_speed = sprint_speed;
 
 var _target_direction = _key_right - _key_left
 
@@ -51,8 +62,10 @@ else if (!crouching && _key_crouch) {
 if (place_meeting(x, y + 1, objImpassableObjectParent))
 	grounded = true;
 	
-if (phy_speed_y != 0)
+if (phy_speed_y != 0) {
 	grounded = false;
+	braking_or_turning = false;
+}
 
 #endregion
 
@@ -81,6 +94,7 @@ if (!grounded && _target_direction == 0) {
 // If the speed passed the target velocity, set it to the target velocity
 if (sign(_previous_x_speed - _target_velocity) != sign(phy_speed_x - _target_velocity)) {
 	phy_speed_x = _target_velocity;
+	braking_or_turning = false;
 }
 			   
 #endregion
@@ -91,6 +105,7 @@ if (_key_jump && grounded)
 {
 	phy_speed_y = -jump_power;
 	grounded = false;
+	braking_or_turning = false;
 }
 
 #endregion
@@ -152,7 +167,31 @@ if (!grounded)
 	else
 		sprite_index = sprPlayerJumpPeak;
 }
-else if (phy_speed_x != 0 || _key_left || _key_right)
+else if (braking_or_turning) {
+	if (sign(phy_speed_x) == sign(started_braking_at_speed)) {
+		if (abs(phy_speed_x) > abs(started_braking_at_speed) * 0.66)
+			sprite_index = sprPlayerBrake1;
+		else if (abs(phy_speed_x) > abs(started_braking_at_speed) * 0.33)
+			sprite_index = sprPlayerBrake2;
+		else
+			sprite_index = sprPlayerBrake3;
+			
+		image_xscale = abs(image_xscale) * sign(phy_speed_x);
+
+	} else {
+		if (abs(phy_speed_x) < _target_speed * 0.25)
+			sprite_index = sprPlayerTurn1;
+		else if (abs(phy_speed_x) < _target_speed * 0.5)
+			sprite_index = sprPlayerTurn2;
+		else if (abs(phy_speed_x) < _target_speed * 0.75)
+			sprite_index = sprPlayerTurn3;
+		else
+			sprite_index = sprPlayerTurn4;
+			
+		image_xscale = -abs(image_xscale) * sign(phy_speed_x);
+	}
+}
+else if ((phy_speed_x != 0 || _key_left || _key_right) && !(_key_left && _key_right))
 {
 	var _min_image_speed = 0.5;
 	var _image_speed_multiplier = walk_imagespeed;
@@ -179,9 +218,16 @@ else
 	image_speed = sit_imagespeed;
 }
 
-if (sign(phy_speed_x)) != 0
+if (sign(phy_speed_x) != 0 && !braking_or_turning)
 {
 	image_xscale = abs(image_xscale) * sign(phy_speed_x);
 }
+
+#endregion
+
+#region Set prev values
+
+prev_key_right = _key_right;
+prev_key_left = _key_left;
 
 #endregion
