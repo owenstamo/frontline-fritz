@@ -1,10 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-// Horizontal speed
-hsp = 0;
-// Vertical speed
-vsp = 0;
 // Whether or not the player is touching the ground
 grounded = true;
 // Whether or not the player is crouching
@@ -16,6 +12,9 @@ sprinting = false;
 braking_or_turning = false;
 // The speed the player was at when they started braking/quickly turning around
 started_braking_at_speed = 0;
+
+// The amount of frames since the player last went up a step. Exists to disable fall animation while going up stairs
+frames_since_last_stair_step = 0;
 
 // Whether or not the player was holding the left key in the previous step
 prev_key_left = false;

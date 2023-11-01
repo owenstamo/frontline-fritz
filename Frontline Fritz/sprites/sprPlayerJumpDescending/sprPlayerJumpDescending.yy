@@ -23,7 +23,7 @@
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"fd9157e3-bcc6-4cb7-bde5-c7a814aa991a","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
-  "origin": 4,
+  "origin": 9,
   "parent": {
     "name": "txgPlayerJump",
     "path": "folders/Sprites/txgPlayerJump.yy",
@@ -60,7 +60,7 @@
     "visibleRange": null,
     "volume": 1.0,
     "xorigin": 10,
-    "yorigin": 11,
+    "yorigin": 9,
   },
   "swatchColours": null,
   "swfPrecision": 2.525,

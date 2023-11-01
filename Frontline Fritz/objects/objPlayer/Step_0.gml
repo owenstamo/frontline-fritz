@@ -8,17 +8,17 @@ var _key_crouch = keyboard_check_pressed(ord("C"));
 
 #endregion
 
-if (sprinting && (!_key_left && !_key_right || 
-				  _key_left && _key_right ||
-				  !_key_left && prev_key_left && _key_right || 
-				  !_key_right && prev_key_right && _key_left)) {
+if (sprinting && !crouching &&
+		(!_key_left && !_key_right || 
+		 _key_left && _key_right ||
+		 !_key_left && prev_key_left && _key_right || 
+		 !_key_right && prev_key_right && _key_left)) {
 	// If the player just stopped sprinting:
 	braking_or_turning = true;
 	started_braking_at_speed = phy_speed_x;
 }
 sprinting = _key_shift;
 if (!_key_left && !_key_right || _key_left && _key_right) sprinting = false;
-show_debug_message(sprinting);
 
 #region Calculate Target Speed
 
@@ -106,45 +106,22 @@ if (phy_speed_x == _target_velocity) {
 
 if (_key_jump && grounded)
 {
-	phy_speed_y = -jump_power;
+	if (!crouching)
+		phy_speed_y = -jump_power;
+	else
+		phy_speed_y = -crouching_jump_power;
+		
 	grounded = false;
 	braking_or_turning = false;
 }
 
 #endregion
 
-#region Collision (no longer in use)
+#region Stairs ###(old)###
 /*
-if (place_meeting(x+phy_speed_x, y, objGround))
+if (place_meeting(x + phy_speed_x, y, objImpassableObjectParent))
 {
-	while (!place_meeting(x+sign(phy_speed_x), y, objGround)) 
-	{
-		x += sign(phy_speed_x);
-	}
-	phy_speed_x = 0;
-}
-
-if (place_meeting(x, y+phy_speed_y, objGround))
-{
-	while (!place_meeting(x, y+sign(phy_speed_y), objGround)) 
-	{
-		y += sign(phy_speed_y);
-	}
-	
-	if (phy_speed_y > 0) {
-		grounded = true;
-	}
-	
-	phy_speed_y = 0;
-}
-*/
-#endregion
-
-#region Stairs ###(fix)###
-
-if (place_meeting(x + hsp, y, objImpassableObjectParent))
-{
-	var _instance = instance_place(x + hsp, y, objImpassableObjectParent);
+	var _instance = instance_place(x + phy_speed_x, y, objImpassableObjectParent);
 	
 	if (_instance)
 	{
@@ -156,12 +133,12 @@ if (place_meeting(x + hsp, y, objImpassableObjectParent))
 		y = _instance.y - (_instance.sprite_height / 2);
 	}
 }
-
+*/
 #endregion
 
 #region Sprite Animation	
 
-if (!grounded)
+if (!grounded && frames_since_last_stair_step > 3)
 {
 	if (phy_speed_y < -4.5)	
 		sprite_index = sprPlayerJumpAscending;
@@ -175,7 +152,7 @@ else if (braking_or_turning) {
 		if (abs(phy_speed_x) < abs(started_braking_at_speed) * 0.2)
 			sprite_index = sprPlayerBrake3;
 		else if (abs(phy_speed_x) < abs(started_braking_at_speed) * 0.4)
-			sprite_index = cat_brake_Sheet1616;
+			sprite_index = sprPlayerBrake2;
 		else if (abs(phy_speed_x) < abs(started_braking_at_speed) * 0.6)
 			sprite_index = sprPlayerBrake1;
 			
@@ -236,3 +213,13 @@ prev_key_right = _key_right;
 prev_key_left = _key_left;
 
 #endregion
+
+#region Step up stairs
+
+// If there's something in front of the player, but not in front 20 pixels higher than the player, evelate the player
+if (place_meeting(x + phy_speed_x * 2, y, objImpassableObjectParent) && 
+	!place_meeting(x + phy_speed_x * 2, y - 20, objImpassableObjectParent) && phy_speed_y >= 0) {
+	phy_position_y = instance_place(x + phy_speed_x * 2, y, objImpassableObjectParent).phy_position_y - 74;
+	frames_since_last_stair_step = 0;
+}
+frames_since_last_stair_step += 1;

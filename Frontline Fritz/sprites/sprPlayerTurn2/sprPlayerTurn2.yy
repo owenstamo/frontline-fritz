@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "group1",
-    "path": "folders/Sprites/group1.yy",
+    "name": "txgCatBrakeOrTurn",
+    "path": "folders/Sprites/txgCatBrakeOrTurn.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

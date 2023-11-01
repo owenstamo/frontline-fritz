@@ -36,9 +36,10 @@
   "physicsStartAwake": true,
   "properties": [
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"move_speed","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"5","varType":0,},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"move_speed_midair","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"8","varType":0,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"move_speed_midair","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"7","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"sprint_speed","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"11","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"jump_power","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"15","varType":0,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"crouching_jump_power","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"13","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"acceleration_magnitude","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"0.7","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"deceleration_magnitude","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"0.8","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"deceleration_magnitude_midair","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"0.6","varType":0,},
