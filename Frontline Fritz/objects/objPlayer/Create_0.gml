@@ -24,6 +24,10 @@ prev_key_right = false;
 // Stop this object from rotating
 phy_fixed_rotation = true;
 
+// Declare variable for equipped object (which is held in the mouth) and check whether player is holding item
+is_holding_item = false;
+equipped_object = noone;
+equipped_object_anim = 0;
 
 #region This doesn't work (but I'm keeping it in case it does in the future):
 

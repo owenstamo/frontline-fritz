@@ -22,6 +22,7 @@
   "ResourceOrderSettings": [
     {"name":"sprPlayerCrouch","order":4,"path":"sprites/sprPlayerCrouch/sprPlayerCrouch.yy",},
     {"name":"objButtonQuit","order":10,"path":"objects/objButtonQuit/objButtonQuit.yy",},
+    {"name":"sprLetter","order":19,"path":"sprites/sprLetter/sprLetter.yy",},
     {"name":"sprPlayerBrake1","order":1,"path":"sprites/sprPlayerBrake1/sprPlayerBrake1.yy",},
     {"name":"sprChair","order":13,"path":"sprites/sprChair/sprChair.yy",},
     {"name":"sprPlayerJumpDescending","order":2,"path":"sprites/sprPlayerJumpDescending/sprPlayerJumpDescending.yy",},
@@ -37,6 +38,7 @@
     {"name":"objBackground","order":7,"path":"objects/objBackground/objBackground.yy",},
     {"name":"objMeow","order":13,"path":"objects/objMeow/objMeow.yy",},
     {"name":"sprPlayerWalk","order":17,"path":"sprites/sprPlayerWalk/sprPlayerWalk.yy",},
+    {"name":"objLetter","order":14,"path":"objects/objLetter/objLetter.yy",},
     {"name":"sprBackground","order":14,"path":"sprites/sprBackground/sprBackground.yy",},
     {"name":"objButtonPlay","order":9,"path":"objects/objButtonPlay/objButtonPlay.yy",},
     {"name":"sprPlayerTurn2","order":5,"path":"sprites/sprPlayerTurn2/sprPlayerTurn2.yy",},
