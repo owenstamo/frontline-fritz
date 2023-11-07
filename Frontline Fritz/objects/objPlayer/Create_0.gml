@@ -21,9 +21,19 @@ prev_key_left = false;
 // Whether or not the player was holding the right key in the previous step
 prev_key_right = false;
 
+// Reference physics speeds from other objects
+phy_speed_x = 0;
+phy_speed_y = 0;
+
 // Stop this object from rotating
 phy_fixed_rotation = true;
 
+// Declare variables for equipped objects / inventory
+is_holding_item = false;
+item_picked_up = false;
+equipped_item = noone;
+equipped_item_spr = noone;
+equipped_item_anim = 0;
 
 #region This doesn't work (but I'm keeping it in case it does in the future):
 
