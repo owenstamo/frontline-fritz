@@ -5,7 +5,8 @@ var _key_left = (keyboard_check(ord("A")) || keyboard_check(vk_left));
 var _key_shift = keyboard_check(vk_lshift);
 var _key_jump = keyboard_check(vk_space);
 var _key_crouch = keyboard_check_pressed(ord("C"));
-var _key_equip = keyboard_check_pressed(ord("E"));
+var _key_equip = keyboard_check_pressed(ord("F"));
+var _key_pickup = keyboard_check_pressed(ord("E"));
 
 #endregion
 
@@ -227,13 +228,21 @@ frames_since_last_stair_step += 1;
 
 #region Check to toggle equipped item
 
-if (_key_equip && !is_holding_item) {
-	equipped_object = sprLetter;
-	is_holding_item = true;
-}
-else if (_key_equip && is_holding_item) {
-	equipped_object = noone;
-	is_holding_item = false;
+if (equipped_item != noone) {
+	if (_key_equip && !is_holding_item) {
+		equipped_item_spr = equipped_item.sprite_index;
+		is_holding_item = true;
+	}
+	else if (_key_equip && is_holding_item) {
+		equipped_item_spr = noone;
+		is_holding_item = false;
+	}
+	else if (item_picked_up) {
+		equipped_item_spr = equipped_item.sprite_index;
+		is_holding_item = true;
+		item_picked_up = false;
+	}
 }
 
 #endregion
+

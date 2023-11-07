@@ -4,26 +4,34 @@
 // ITEM SPRITES MUST BE CENTERED AND around 10x10 for best performance
 
 function scrDrawItem(){
-	if (equipped_object != noone && is_holding_item = true) {
-		var sub_num = sprite_get_number(equipped_object);
-		objectRotation = -40;
+	
+	if (equipped_item_spr != noone && is_holding_item = true) {
+		var sub_num = sprite_get_number(equipped_item_spr);
 		if sub_num > 1  {
-			if (equipped_object_anim <= sub_num - 1) {equipped_object_anim += image_speed;}
-			else {equipped_object_anim = 0;}
+			if (equipped_item_anim <= sub_num - 1) {equipped_item_anim += image_speed;}
+			else {equipped_item_anim = 0;}
 		}
-		else {equipped_object_anim = 0;}
+		else {equipped_item_anim = 0;}
 		var img = ceil(image_index) - 1;
+		
+				
+		// Set rotations:
+		objectRotation = 0;
+		
+		if (equipped_item_spr = sprRifle) {objectRotation = -10;}
+		
+		else {objectRotation = -40;}
 		
 	    // FUNCTIONS (To reduce redundancy)
 		// offsetX and offsetY are the offsets away from origin of player to put the origin of item sprite
 		
 		function drawItem(offsetX, offsetY) {
-				if (image_xscale > 0) {draw_sprite_ext(equipped_object, equipped_object_anim, x+(offsetX * image_xscale), y+(offsetY * image_xscale), image_xscale, image_yscale, objectRotation, c_white, 1);}
-				else {draw_sprite_ext(equipped_object, equipped_object_anim, x+(offsetX * image_xscale), y+(offsetY * -image_xscale), image_xscale, image_yscale, -objectRotation, c_white, 1);}
+				if (image_xscale > 0) {draw_sprite_ext(equipped_item_spr, equipped_item_anim, x+(offsetX * image_xscale), y+(offsetY * image_xscale), image_xscale, image_yscale, objectRotation, c_white, 1);}
+				else {draw_sprite_ext(equipped_item_spr, equipped_item_anim, x+(offsetX * image_xscale), y+(offsetY * -image_xscale), image_xscale, image_yscale, -objectRotation, c_white, 1);}
 		}
 		function drawItemExt(offsetX, offsetY, rotation, xscaleMultiplier) {
-				if (image_xscale > 0) {draw_sprite_ext(equipped_object, equipped_object_anim, x+(offsetX * image_xscale), y+(offsetY * image_xscale), image_xscale * xscaleMultiplier, image_yscale, rotation, c_white, 1);}
-				else {draw_sprite_ext(equipped_object, equipped_object_anim, x+(offsetX * image_xscale), y+(offsetY * -image_xscale), image_xscale * xscaleMultiplier, image_yscale, -rotation, c_white, 1);}
+				if (image_xscale > 0) {draw_sprite_ext(equipped_item_spr, equipped_item_anim, x+(offsetX * image_xscale), y+(offsetY * image_xscale), image_xscale * xscaleMultiplier, image_yscale, rotation, c_white, 1);}
+				else {draw_sprite_ext(equipped_item_spr, equipped_item_anim, x+(offsetX * image_xscale), y+(offsetY * -image_xscale), image_xscale * xscaleMultiplier, image_yscale, -rotation, c_white, 1);}
 		}
 		
 		// DRAW FOR IDLE ANIMATION

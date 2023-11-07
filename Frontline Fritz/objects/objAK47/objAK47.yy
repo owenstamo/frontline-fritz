@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objLetter",
+  "name": "objAK47",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"objImpassableObjectParent","path":"objects/objImpassableObjectParent/objImpassableObjectParent.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
@@ -30,16 +30,16 @@
   "physicsShape": 1,
   "physicsShapePoints": [
     {"x":0.0,"y":0.0,},
-    {"x":8.0,"y":0.0,},
-    {"x":8.0,"y":10.0,},
-    {"x":0.0,"y":10.0,},
+    {"x":35.0,"y":0.0,},
+    {"x":35.0,"y":14.0,},
+    {"x":0.0,"y":14.0,},
   ],
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprLetter",
-    "path": "sprites/sprLetter/sprLetter.yy",
+    "name": "sprRifle",
+    "path": "sprites/sprRifle/sprRifle.yy",
   },
   "spriteMaskId": null,
   "visible": true,

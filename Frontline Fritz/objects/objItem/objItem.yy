@@ -1,10 +1,9 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objLetter",
+  "name": "objItem",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"objImpassableObjectParent","path":"objects/objImpassableObjectParent/objImpassableObjectParent.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
   "managed": true,
@@ -14,8 +13,8 @@
     "path": "folders/Objects/Items.yy",
   },
   "parentObjectId": {
-    "name": "objItem",
-    "path": "objects/objItem/objItem.yy",
+    "name": "objPassableObjectParent",
+    "path": "objects/objPassableObjectParent/objPassableObjectParent.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,
@@ -30,17 +29,17 @@
   "physicsShape": 1,
   "physicsShapePoints": [
     {"x":0.0,"y":0.0,},
-    {"x":8.0,"y":0.0,},
-    {"x":8.0,"y":10.0,},
-    {"x":0.0,"y":10.0,},
+    {"x":32.0,"y":0.0,},
+    {"x":32.0,"y":32.0,},
+    {"x":0.0,"y":32.0,},
   ],
   "physicsStartAwake": true,
-  "properties": [],
+  "properties": [
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"pickup_distance","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"100","varType":0,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"item_gravity","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"0.5","varType":0,},
+  ],
   "solid": false,
-  "spriteId": {
-    "name": "sprLetter",
-    "path": "sprites/sprLetter/sprLetter.yy",
-  },
+  "spriteId": null,
   "spriteMaskId": null,
   "visible": true,
 }
