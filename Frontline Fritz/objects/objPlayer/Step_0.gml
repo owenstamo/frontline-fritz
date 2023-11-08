@@ -229,6 +229,8 @@ if (place_meeting(x + phy_speed_x * 2, y, objImpassableObjectParent) &&
 }
 frames_since_last_stair_step += 1;
 
+#endregion
+
 #region Check to toggle equipped item
 
 if (equipped_item != noone) {
