@@ -218,9 +218,9 @@ prev_key_left = _key_left;
 
 #region Step up stairs
 
-// If there's something in front of the player, but not in front 20 pixels higher than the player, evelate the player
+// If there's something in front of the player, but not in front 35 pixels higher than the player, evelate the player
 if (place_meeting(x + phy_speed_x * 2, y, objImpassableObjectParent) && 
-	!place_meeting(x + phy_speed_x * 2, y - 20, objImpassableObjectParent) && phy_speed_y >= 0) {
+	!place_meeting(x + phy_speed_x * 2, y - 35, objImpassableObjectParent) && phy_speed_y >= 0) {
 	var _step_instance = instance_place(x + phy_speed_x * 2, y, objImpassableObjectParent)
 	if (_step_instance.image_angle % 90 == 0) {
 		phy_position_y = _step_instance.phy_position_y - 74;

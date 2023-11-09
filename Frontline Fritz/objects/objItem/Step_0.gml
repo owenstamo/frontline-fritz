@@ -21,11 +21,7 @@ with (objItem) {
     }
 }
 
-// Brighten item when near
-
-	// I couldnt figure out a way to make it brighter (since image_alpha only goes up to 1)
-	// so for now we are going to make it darker when the _player gets near but I don't know
-	// if you guys are fine with doing a separate "glow" sprite for each item
+// Brigthen object when near
 
 var _distance_to_player = point_distance(x, y, _player.x, _player.y);
 

@@ -3,9 +3,9 @@
   "resourceVersion": "1.0",
   "name": "sprPlayerTurn3",
   "bbox_bottom": 21,
-  "bbox_left": 0,
-  "bbox_right": 24,
-  "bbox_top": 1,
+  "bbox_left": 5,
+  "bbox_right": 19,
+  "bbox_top": 4,
   "bboxMode": 0,
   "collisionKind": 1,
   "collisionTolerance": 0,
@@ -13,14 +13,14 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"c9d12c33-9b85-4b76-9df0-70621ad27985",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"f20f0d46-9841-4209-894e-256b80bc80b1",},
   ],
   "gridX": 0,
   "gridY": 0,
   "height": 22,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"f68a6483-fe61-4766-9f9e-41c195017af9","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"4c7e9fc7-f602-4e81-af0e-fab41794f246","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
   "origin": 4,
@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"c9d12c33-9b85-4b76-9df0-70621ad27985","path":"sprites/sprPlayerTurn3/sprPlayerTurn3.yy",},},},"Disabled":false,"id":"066af53b-80bc-4363-8739-757bfbda7018","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"f20f0d46-9841-4209-894e-256b80bc80b1","path":"sprites/sprPlayerTurn3/sprPlayerTurn3.yy",},},},"Disabled":false,"id":"37408e6a-e1c3-41ac-b9a6-5fb72005627d","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

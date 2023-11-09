@@ -3,9 +3,9 @@
   "resourceVersion": "1.0",
   "name": "sprPlayerTurn4",
   "bbox_bottom": 21,
-  "bbox_left": 0,
-  "bbox_right": 24,
-  "bbox_top": 1,
+  "bbox_left": 7,
+  "bbox_right": 19,
+  "bbox_top": 4,
   "bboxMode": 0,
   "collisionKind": 1,
   "collisionTolerance": 0,
@@ -13,14 +13,14 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"72693721-1992-4295-8bc2-4391750de21b",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"cb91a5b1-336a-479e-be4a-9a94a4ecda0f",},
   ],
   "gridX": 0,
   "gridY": 0,
   "height": 22,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"f68a6483-fe61-4766-9f9e-41c195017af9","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"1e578758-677d-4088-a458-391c24932eb7","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
   "origin": 4,
@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"72693721-1992-4295-8bc2-4391750de21b","path":"sprites/sprPlayerTurn4/sprPlayerTurn4.yy",},},},"Disabled":false,"id":"e475ac8f-abee-4bd9-900a-178861c7bd47","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"cb91a5b1-336a-479e-be4a-9a94a4ecda0f","path":"sprites/sprPlayerTurn4/sprPlayerTurn4.yy",},},},"Disabled":false,"id":"2bcb7ee0-3e7c-4c53-bf64-f070f301fe53","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,
