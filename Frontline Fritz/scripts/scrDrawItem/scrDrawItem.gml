@@ -62,6 +62,8 @@ function scrDrawItem(){
 		
 		// DRAW FOR JUMP ANIMATION
 		
+		if (sprite_index == sprPlayerPounce1) {drawItem(5, 7.5);}
+		if (sprite_index == sprPlayerPounce2) {drawItem(5, 7.5);}
 		if (sprite_index == sprPlayerJumpAscending) {drawItem(6, 3.5);}
 		if (sprite_index == sprPlayerJumpPeak) {drawItem(6, 3.5);}
 		if (sprite_index == sprPlayerJumpDescending) {drawItem(7, 8.5);}

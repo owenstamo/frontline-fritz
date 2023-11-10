@@ -28,6 +28,12 @@ phy_speed_y = 0;
 // Stop this object from rotating
 phy_fixed_rotation = true;
 
+// Set Current Jump Power and whether player is pouncing:
+current_jump_power = jump_power;
+pounce_jump_power = 0;
+is_power_jumping = false
+is_pouncing = false;
+
 // Declare variables for equipped objects / inventory
 is_holding_item = false;
 item_picked_up = false;

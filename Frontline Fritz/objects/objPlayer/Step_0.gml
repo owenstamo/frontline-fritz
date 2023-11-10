@@ -4,6 +4,9 @@ var _key_right = (keyboard_check(ord("D")) || keyboard_check(vk_right));
 var _key_left = (keyboard_check(ord("A")) || keyboard_check(vk_left));
 var _key_shift = keyboard_check(vk_lshift);
 var _key_jump = keyboard_check(vk_space);
+var _key_jump_pressed = keyboard_check_pressed(vk_space);
+var _key_jump_released = keyboard_check_released(vk_space);
+var _key_power_jump = mouse_check_button(mb_right);
 var _key_crouch = keyboard_check_pressed(ord("C"));
 var _key_equip = keyboard_check_pressed(ord("F"));
 var _key_pickup = keyboard_check_pressed(ord("E"));
@@ -106,13 +109,48 @@ if (phy_speed_x == _target_velocity) {
 
 #region Jump
 
-if (_key_jump && grounded)
+if (grounded & !is_power_jumping) {
+	if (crouching) {
+		current_jump_power = crouching_jump_power;
+	}
+	else {
+		current_jump_power = jump_power;
+	}
+}
+
+if ((_key_jump_pressed && _key_power_jump && grounded) || _key_jump && is_power_jumping) {
+	if (!is_power_jumping) {
+		pounce_jump_power = current_jump_power;
+	}
+	is_power_jumping = true;
+	current_jump_power += 0.2;
+	if (current_jump_power > pounce_jump_power + max_jump_adder) {
+		is_power_jumping = false;
+		phy_speed_y = -current_jump_power;
+	}
+}
+
+else if (_key_jump && grounded && !is_power_jumping)
 {
-	if (!crouching)
-		phy_speed_y = -jump_power;
-	else
+	if (!crouching) {
+		current_jump_power = jump_power
+		phy_speed_y = -current_jump_power;
+	}
+	else {
+		current_jump_power = crouching_jump_power
 		phy_speed_y = -crouching_jump_power;
+	}
+	if (_key_jump_pressed) {
+		is_pouncing = true;
+	}
 		
+	grounded = false;
+	braking_or_turning = false;
+}
+
+if (_key_jump_released && grounded) {
+	is_power_jumping = false;
+	phy_speed_y = -current_jump_power;
 	grounded = false;
 	braking_or_turning = false;
 }
@@ -142,12 +180,23 @@ if (place_meeting(x + phy_speed_x, y, objImpassableObjectParent))
 
 if (!grounded && frames_since_last_stair_step > 3)
 {
-	if (phy_speed_y < -4.5)	
-		sprite_index = sprPlayerJumpAscending;
-	else if (phy_speed_y > 6)
-		sprite_index = sprPlayerJumpDescending;
-	else
-		sprite_index = sprPlayerJumpPeak;
+	if (is_pouncing) {
+		if (sprite_index == sprPlayerPounce1) {
+			sprite_index = sprPlayerPounce2;
+			is_pouncing = false;
+		}
+		else {
+			sprite_index = sprPlayerPounce1;
+		}
+	}
+	else {
+		if (phy_speed_y < -4.5)	
+			sprite_index = sprPlayerJumpAscending;
+		else if (phy_speed_y > 6)
+			sprite_index = sprPlayerJumpDescending;
+		else
+			sprite_index = sprPlayerJumpPeak;
+	}
 }
 else if (braking_or_turning) {
 	if (sign(phy_speed_x) == sign(started_braking_at_speed)) {
@@ -162,6 +211,7 @@ else if (braking_or_turning) {
 			image_xscale = abs(image_xscale) * sign(phy_speed_x);
 
 	} else {
+
 		if (abs(phy_speed_x) < _target_speed * 0.25)
 			sprite_index = sprPlayerTurn1;
 		else if (abs(phy_speed_x) < _target_speed * 0.5)
@@ -205,6 +255,15 @@ else
 if (sign(phy_speed_x) != 0 && !braking_or_turning)
 {
 	image_xscale = abs(image_xscale) * sign(phy_speed_x);
+}
+
+if (is_power_jumping) {
+	if (!crouching && current_jump_power - jump_power < (0.5 * max_jump_adder) || crouching && current_jump_power - crouching_jump_power < (0.5 * max_jump_adder)) { 
+		sprite_index = sprPlayerPounce1;
+	}
+	else {
+		sprite_index = sprPlayerPounce2;
+	}
 }
 
 #endregion
