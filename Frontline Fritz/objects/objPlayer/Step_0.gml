@@ -310,3 +310,37 @@ if (equipped_item != noone) {
 
 #endregion
 
+#region footsteps
+
+if sprite_index = sprPlayerWalk {
+	if (floor(image_index)== 1 or floor(image_index) == 4){
+		if (!audio_is_playing(sndWalk)){
+		p=random_range(.9,1.1);
+		audio_play_sound(sndWalk, 0, false, 1, 0, p);
+		}
+	}
+}
+if sprite_index = sprPlayerCrouch {
+	if (floor(image_index)== 2 or floor(image_index)== 4 or floor(image_index) == 0){
+		if (!audio_is_playing(sndCrouch)){
+		p=random_range(.9,1.1);
+		audio_play_sound(sndCrouch, 0, false, 1, 0, p);
+		}
+	}
+}
+if sprite_index = sprPlayerRun {
+	if (floor(image_index)== 1 or floor(image_index)== 2 or floor(image_index) == 4 or floor(image_index)== 5){
+		if (!audio_is_playing(sndRun)){
+		p=random_range(.9,1.1);
+		audio_play_sound(sndRun, 0, false, 1, 0, p);
+		}
+	}
+}
+if sprite_index = sprPlayerBrake3 {
+		if (!audio_is_playing(sndBrake)){
+		p=random_range(.9,1.1);
+		audio_play_sound(sndBrake, 0, false, 1, 0, p);
+		}
+}
+
+#endregion
