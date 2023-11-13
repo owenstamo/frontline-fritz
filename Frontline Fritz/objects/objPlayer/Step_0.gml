@@ -13,17 +13,12 @@ var _key_pickup = keyboard_check_pressed(ord("E"));
 
 #endregion
 
-if (sprinting && !crouching &&
-		(!_key_left && !_key_right || 
-		 _key_left && _key_right ||
-		 !_key_left && prev_key_left && _key_right || 
-		 !_key_right && prev_key_right && _key_left)) {
-	// If the player just stopped sprinting:
-	braking_or_turning = true;
-	started_braking_at_speed = phy_speed_x;
-}
+#region Set Sprinting
+
 sprinting = _key_shift;
 if (!_key_left && !_key_right || _key_left && _key_right) sprinting = false;
+
+#endregion
 
 #region Calculate Target Speed
 
@@ -35,9 +30,21 @@ if (!grounded) _target_speed = move_speed_midair;
 
 if (sprinting) _target_speed = sprint_speed;
 
+if (is_power_jumping) _target_speed *= power_jump_charge_move_speed_mult;
+
 var _target_direction = _key_right - _key_left
 
 var _target_velocity = _target_direction * _target_speed;
+
+#endregion
+
+#region Check if the player started braking/turning
+
+if  (_target_direction != sprinting_in_dir && sprinting_in_dir != 0 && !braking_or_turning) {
+	braking_or_turning = true;
+	started_braking_at_speed = phy_speed_x;
+}
+if (!braking_or_turning) started_braking_at_speed = 0;
 
 #endregion
 
@@ -63,21 +70,7 @@ else if (!crouching && _key_crouch) {
 
 #endregion
 
-#region Check grounded
-
-if (place_meeting(x, y + 1, objImpassableObjectParent))
-	grounded = true;
-	
-if (phy_speed_y != 0) {
-	grounded = false;
-	braking_or_turning = false;
-}
-
-#endregion
-
 #region Calculate Movement/Acceleration
-
-var _previous_x_speed = phy_speed_x;
 
 var _accelerating = (phy_speed_x < _target_velocity && phy_speed_x >= 0) ||
                     (_target_velocity < phy_speed_x && phy_speed_x <= 0)
@@ -98,13 +91,35 @@ if (!grounded && _target_direction == 0) {
 }
 
 // If the speed passed the target velocity, set it to the target velocity
-if (sign(_previous_x_speed - _target_velocity) != sign(phy_speed_x - _target_velocity)) {
+if (sign(previous_x_velocity - _target_velocity) != sign(phy_speed_x - _target_velocity)) {
 	phy_speed_x = _target_velocity;
 }
 if (phy_speed_x == _target_velocity) {
 	braking_or_turning = false;
 }
+	
+if (sprinting && _target_direction == sign(phy_speed_x)) {
+	sprinting_in_dir = _target_direction;
+}
+if (abs(phy_speed_x) <= move_speed && !_key_shift || // If the player is at walking speed or slower while not sprinting,
+	phy_speed_x == _target_velocity && phy_speed_x == 0)  { // Or they're just stationary
+	sprinting_in_dir = 0;
+}
 			   
+#endregion
+
+#region Check grounded
+
+
+if (phy_speed_y != 0)
+	grounded = false;
+
+if (place_meeting(x, y + 3, objImpassableObjectParent))
+	grounded = true
+
+if (!grounded)
+	braking_or_turning = false;
+
 #endregion
 
 #region Jump
@@ -148,32 +163,15 @@ else if (_key_jump && grounded && !is_power_jumping)
 	braking_or_turning = false;
 }
 
-if (_key_jump_released && grounded) {
+if (_key_jump_released) {
 	is_power_jumping = false;
-	phy_speed_y = -current_jump_power;
-	grounded = false;
-	braking_or_turning = false;
-}
-
-#endregion
-
-#region Stairs ###(old)###
-/*
-if (place_meeting(x + phy_speed_x, y, objImpassableObjectParent))
-{
-	var _instance = instance_place(x + phy_speed_x, y, objImpassableObjectParent);
-	
-	if (_instance)
-	{
-		show_debug_message("instance exists")
-	}
-	
-	if (collision_point(_instance.x, _instance.y - 20, objImpassableObjectParent, false, true) == noone)
-	{
-		y = _instance.y - (_instance.sprite_height / 2);
+	if (grounded) {
+		phy_speed_y = -current_jump_power;
+		grounded = false;
+		braking_or_turning = false;
 	}
 }
-*/
+
 #endregion
 
 #region Sprite Animation	
@@ -268,13 +266,6 @@ if (is_power_jumping) {
 
 #endregion
 
-#region Set prev values
-
-prev_key_right = _key_right;
-prev_key_left = _key_left;
-
-#endregion
-
 #region Step up stairs
 
 // If there's something in front of the player, but not in front 35 pixels higher than the player, evelate the player
@@ -310,3 +301,12 @@ if (equipped_item != noone) {
 
 #endregion
 
+
+#region Set prev values
+
+prev_key_right = _key_right;
+prev_key_left = _key_left
+previous_x_velocity = phy_speed_x;
+previous_y_velocity = phy_speed_y;
+
+#endregion

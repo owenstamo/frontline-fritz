@@ -12,6 +12,8 @@ sprinting = false;
 braking_or_turning = false;
 // The speed the player was at when they started braking/quickly turning around
 started_braking_at_speed = 0;
+// The direction that the player is/just was sprinting. Sets to zero once the player is fully stationary.
+sprinting_in_dir = false;
 
 // The amount of frames since the player last went up a step. Exists to disable fall animation while going up stairs
 frames_since_last_stair_step = 0;
@@ -20,6 +22,9 @@ frames_since_last_stair_step = 0;
 prev_key_left = false;
 // Whether or not the player was holding the right key in the previous step
 prev_key_right = false;
+
+previous_x_velocity = 0;
+previous_y_velocity = 0;
 
 // Reference physics speeds from other objects
 phy_speed_x = 0;

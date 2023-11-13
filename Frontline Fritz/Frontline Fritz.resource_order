@@ -52,7 +52,7 @@
     {"name":"sprGround","order":2,"path":"sprites/sprGround/sprGround.yy",},
     {"name":"objCaveOutTR","order":9,"path":"objects/objCaveOutTR/objCaveOutTR.yy",},
     {"name":"objCamera","order":2,"path":"objects/objCamera/objCamera.yy",},
-    {"name":"sprPlayerJumpPeak","order":1,"path":"sprites/sprPlayerJumpPeak/sprPlayerJumpPeak.yy",},
+    {"name":"sprPlayerJumpAscending","order":1,"path":"sprites/sprPlayerJumpAscending/sprPlayerJumpAscending.yy",},
     {"name":"sprCaveInBR","order":2,"path":"sprites/sprCaveInBR/sprCaveInBR.yy",},
     {"name":"objButtonParent","order":8,"path":"objects/objButtonParent/objButtonParent.yy",},
     {"name":"sndMeow2","order":1,"path":"sounds/sndMeow2/sndMeow2.yy",},
