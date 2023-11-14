@@ -3,16 +3,15 @@
   "resourceVersion": "1.0",
   "name": "objButtonPlay",
   "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":4,"eventType":6,"isDnD":false,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":7,"eventType":6,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [
     {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"objButtonParent","path":"objects/objButtonParent/objButtonParent.yy",},"propertyId":{"name":"buttonText","path":"objects/objButtonParent/objButtonParent.yy",},"value":"Play",},
   ],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Main Menu",
+    "path": "folders/Objects/Main Menu.yy",
   },
   "parentObjectId": {
     "name": "objButtonParent",
@@ -34,8 +33,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprMenuButton",
-    "path": "sprites/sprMenuButton/sprMenuButton.yy",
+    "name": "sprPlayButton",
+    "path": "sprites/sprPlayButton/sprPlayButton.yy",
   },
   "spriteMaskId": null,
   "visible": true,
