@@ -3,8 +3,7 @@
 
 room_goto(rm_level_1);
 
-
-
+audio_sound_gain(global.background_music, 0, 3000);
 
 
 
