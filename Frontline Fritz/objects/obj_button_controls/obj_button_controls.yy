@@ -34,8 +34,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprPlayButton",
-    "path": "sprites/sprPlayButton/sprPlayButton.yy",
+    "name": "spr_controls_button",
+    "path": "sprites/spr_controls_button/spr_controls_button.yy",
   },
   "spriteMaskId": null,
   "visible": true,

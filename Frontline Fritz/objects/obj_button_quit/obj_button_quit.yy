@@ -33,8 +33,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprPlayButton",
-    "path": "sprites/sprPlayButton/sprPlayButton.yy",
+    "name": "spr_quit_button",
+    "path": "sprites/spr_quit_button/spr_quit_button.yy",
   },
   "spriteMaskId": null,
   "visible": true,

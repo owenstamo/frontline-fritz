@@ -6,8 +6,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Non Equippable",
+    "path": "folders/Objects/Items/Non Equippable.yy",
   },
   "parentObjectId": {
     "name": "obj_impassable_object_parent",

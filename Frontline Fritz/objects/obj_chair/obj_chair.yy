@@ -6,8 +6,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Non Equippable",
+    "path": "folders/Objects/Items/Non Equippable.yy",
   },
   "parentObjectId": {
     "name": "obj_impassable_object_parent",
@@ -25,10 +25,10 @@
   "physicsSensor": false,
   "physicsShape": 1,
   "physicsShapePoints": [
-    {"x":1.0,"y":8.0,},
-    {"x":13.0,"y":8.0,},
-    {"x":13.0,"y":17.0,},
-    {"x":1.0,"y":17.0,},
+    {"x":0.0,"y":20.0,},
+    {"x":20.0,"y":20.0,},
+    {"x":20.0,"y":25.0,},
+    {"x":0.0,"y":25.0,},
   ],
   "physicsStartAwake": true,
   "properties": [

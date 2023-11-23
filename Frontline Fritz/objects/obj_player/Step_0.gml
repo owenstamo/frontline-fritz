@@ -111,13 +111,12 @@ if (abs(phy_speed_x) <= move_speed && !_key_shift || // If the player is at walk
 
 #region Check grounded
 
-
+if (place_meeting(x, y+image_yscale, obj_impassable_object_parent))
+	grounded = true
+	
 if (phy_speed_y != 0)
 	grounded = false;
-
-if (place_meeting(x, y + 3, obj_impassable_object_parent))
-	grounded = true
-
+	
 if (!grounded)
 	braking_or_turning = false;
 
