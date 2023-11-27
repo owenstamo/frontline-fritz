@@ -8,8 +8,7 @@ var _key_jump_pressed = keyboard_check_pressed(vk_space);
 var _key_jump_released = keyboard_check_released(vk_space);
 var _key_power_jump = mouse_check_button(mb_right);
 var _key_crouch = keyboard_check_pressed(ord("C"));
-var _key_equip = keyboard_check_pressed(ord("F"));
-var _key_pickup = keyboard_check_pressed(ord("E"));
+var _key_store = keyboard_check_pressed(ord("F"));
 
 #endregion
 
@@ -278,20 +277,17 @@ frames_since_last_stair_step += 1;
 
 #region Check to toggle equipped item
 
-if (equipped_item != noone) {
-	if (_key_equip && !is_holding_item) {
-		equipped_item_spr = equipped_item.sprite_index;
-		is_holding_item = true;
-	}
-	else if (_key_equip && is_holding_item) {
-		equipped_item_spr = 0;
-		is_holding_item = false;
-	}
-	else if (item_picked_up) {
-		equipped_item_spr = equipped_item.sprite_index;
-		is_holding_item = true;
-		item_picked_up = false;
-	}
+#endregion
+
+#region Store equipped item
+
+if (is_holding_item && _key_store) {
+	equipped_item_spr = 0;
+	is_holding_item = false;
+	
+	var _inventory_item = instance_create_layer(0, 0, layer_get_id("GUI"), obj_inventory_item);
+	_inventory_item.corresponding_item = equipped_item;
+	_inventory_item.sprite_index = equipped_item.sprite_index;
 }
 
 #endregion
