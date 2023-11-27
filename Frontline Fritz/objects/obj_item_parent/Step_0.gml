@@ -49,20 +49,23 @@ if (_player.is_holding_item && (_key_drop || can_pick_up && _key_pickup && !hidd
 	_player.equipped_item.just_dropped = true;
 	_player.equipped_item = noone;
 	_player.is_holding_item = false;
+	_player.equipped_item_spr = 0;
 	
-	if (!audio_is_playing(snd_drop)){
-	audio_play_sound(snd_drop, 1, false);
+	if (!audio_is_playing(snd_drop)) {
+		audio_play_sound(snd_drop, 1, false);
 	}
 }
 
 if (can_pick_up && _key_pickup && !hidden) {
-	_player.equipped_item = _nearest_item;
+	_player.equipped_item = id;
 	_player.item_picked_up = true;
 	hidden = true;
 	layer = layer_get_id("Hidden_Instances");
+	_player.equipped_item_spr = sprite_index;
+	_player.is_holding_item = true;
 	
-	if (!audio_is_playing(snd_pickup)){
-	audio_play_sound(snd_pickup, 1, false);
+	if (!audio_is_playing(snd_pickup)) {
+		audio_play_sound(snd_pickup, 1, false);
 	}
 }
 

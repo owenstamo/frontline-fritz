@@ -41,7 +41,6 @@ is_pouncing = false;
 
 // Declare variables for equipped objects / inventory
 is_holding_item = false;
-item_picked_up = false;
 equipped_item = noone;
 equipped_item_spr = 0;
 equipped_item_anim = 0;
