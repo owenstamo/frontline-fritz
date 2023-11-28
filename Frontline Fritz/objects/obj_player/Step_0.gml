@@ -274,17 +274,13 @@ frames_since_last_stair_step += 1;
 
 #endregion
 
-#region Check to toggle equipped item
-
-#endregion
-
 #region Store equipped item
 
 if (is_holding_item && _key_store) {
 	equipped_item_spr = 0;
 	is_holding_item = false;
 	
-	var _inventory_item = instance_create_layer(0, 0, layer_get_id("GUI"), obj_inventory_item);
+	var _inventory_item = instance_create_layer(0, 0, layer_get_id("Inventory_Item"), obj_inventory_item);
 	_inventory_item.corresponding_item = equipped_item;
 	_inventory_item.sprite_index = equipped_item.sprite_index;
 }

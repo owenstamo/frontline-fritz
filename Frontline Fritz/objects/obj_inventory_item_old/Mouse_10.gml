@@ -1,5 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-x = obj_camera.x;
-y = obj_camera.y + current_y_offset;
+layer = layer_get_id("GUI_Glowing");
+depth = 200;
+
+mouse_hovering = true;
+
+
+
+
+
+

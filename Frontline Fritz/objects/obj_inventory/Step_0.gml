@@ -20,6 +20,3 @@ current_y_offset += (dest_y_offset - current_y_offset) * open_speed;
 
 
 
-
-
-

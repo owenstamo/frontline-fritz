@@ -31,9 +31,7 @@
     {"x":1.0,"y":17.0,},
   ],
   "physicsStartAwake": true,
-  "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"depth","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"1","varType":0,},
-  ],
+  "properties": [],
   "solid": false,
   "spriteId": {
     "name": "spr_pipes_3",
