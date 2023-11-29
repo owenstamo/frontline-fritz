@@ -15,8 +15,6 @@ image_angle = random(360);
 image_xscale = 10;
 image_yscale = 10;
 
-array_push(obj_inventory.items_containing, self);
-
 // The ground item (obj_item) that this inventory item (obj_inventory_item) represents
 corresponding_item = noone;
 

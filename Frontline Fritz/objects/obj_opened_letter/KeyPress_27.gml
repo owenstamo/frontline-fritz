@@ -1,7 +1,17 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-// Inherit the parent event
-event_inherited();
+if (opened) {
+	opened = false;
+	dest_y_offset = closed_y_offset;
+}
 
-item_score = 25;
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,14 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-// Inherit the parent event
-event_inherited();
+x = obj_camera.x;
+y = obj_camera.y + current_y_offset;
 
-item_score = 25;
+
+
+
+
+
+
+
+

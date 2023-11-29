@@ -277,12 +277,31 @@ frames_since_last_stair_step += 1;
 #region Store equipped item
 
 if (is_holding_item && _key_store) {
-	equipped_item_spr = 0;
-	is_holding_item = false;
+	can_store = true;
+	if (equipped_item.object_index == obj_letter) {
+		num_of_letters = 0;
+		for (i = 0; i < array_length(obj_inventory.items_containing); i++) {
+			if (array_get(obj_inventory.items_containing, i).object_index == obj_letter) {
+				num_of_letters += 1;
+			}
+		}
+		if (num_of_letters >= 2) {
+			can_store = false;
+			instance_create_layer(0, -10000, layer_get_id("Alerts"), obj_alert, { sprite_index: spr_2_letters_alert })
+		}
+	}
 	
-	var _inventory_item = instance_create_layer(0, 0, layer_get_id("Inventory_Item"), obj_inventory_item);
-	_inventory_item.corresponding_item = equipped_item;
-	_inventory_item.sprite_index = equipped_item.sprite_index;
+	if (can_store) {
+		equipped_item_spr = 0;
+		is_holding_item = false;
+	
+		var _inventory_item = instance_create_layer(0, 0, layer_get_id("Inventory_Item"), obj_inventory_item);
+		_inventory_item.corresponding_item = equipped_item;
+		_inventory_item.sprite_index = equipped_item.sprite_index;
+	
+		array_push(obj_inventory.items_containing, equipped_item) 
+		equipped_item = noone;
+	}
 }
 
 #endregion

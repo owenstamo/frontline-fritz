@@ -26,8 +26,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sprControls",
-    "path": "sprites/sprControls/sprControls.yy",
+    "name": "spr_controls",
+    "path": "sprites/spr_controls/spr_controls.yy",
   },
   "spriteMaskId": null,
   "visible": true,

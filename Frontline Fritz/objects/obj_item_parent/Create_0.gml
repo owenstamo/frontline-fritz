@@ -1,5 +1,7 @@
 gravity = item_gravity;
 
+item_score = 0;
+
 // Default for whether player can pick up or not
 can_pick_up = false;
 

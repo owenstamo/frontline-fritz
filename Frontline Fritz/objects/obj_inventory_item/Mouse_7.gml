@@ -23,10 +23,23 @@ _player.item_picked_up = true;
 _player.equipped_item_spr = sprite_index;
 _player.is_holding_item = true;
 
-instance_destroy(id);
 
 obj_inventory.inventory_open = false;
 obj_inventory.dest_y_offset = obj_inventory.closed_y_offset;
+show_debug_message(obj_inventory.items_containing);
+
+function matches(element, i) { 
+	return array_get(obj_inventory.items_containing, i) == element;
+}
+
+array_delete(
+	obj_inventory.items_containing,
+	array_find_index(obj_inventory.items_containing, matches),
+	1
+);
+show_debug_message(obj_inventory.items_containing);
+
+instance_destroy(id);
 
 
 

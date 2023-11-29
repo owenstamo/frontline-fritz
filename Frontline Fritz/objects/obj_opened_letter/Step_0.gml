@@ -1,7 +1,15 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-// Inherit the parent event
-event_inherited();
+current_y_offset += (dest_y_offset - current_y_offset) * open_speed;
 
-item_score = 25;
+
+
+
+
+
+
+
+
+
+
