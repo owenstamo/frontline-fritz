@@ -30,12 +30,12 @@
   "physicsSensor": false,
   "physicsShape": 1,
   "physicsShapePoints": [
-    {"x":0.0,"y":8.0,},
-    {"x":17.0,"y":8.0,},
-    {"x":17.0,"y":22.0,},
-    {"x":0.0,"y":22.0,},
+    {"x":9.0,"y":16.0,},
+    {"x":12.0,"y":16.0,},
+    {"x":12.0,"y":22.0,},
+    {"x":9.0,"y":22.0,},
   ],
-  "physicsStartAwake": true,
+  "physicsStartAwake": false,
   "properties": [
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"move_speed","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"5","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"move_speed_midair","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"7","varType":0,},
@@ -53,6 +53,8 @@
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"jump_imagespeed","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"1","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"crouch_imagespeed","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"1.4","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"max_jump_adder","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"5","varType":0,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"min_space_to_uncrouch","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"70","varType":0,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"player_height","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"10","varType":0,},
   ],
   "solid": false,
   "spriteId": {

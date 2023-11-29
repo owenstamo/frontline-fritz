@@ -25,15 +25,13 @@
   "physicsSensor": false,
   "physicsShape": 1,
   "physicsShapePoints": [
-    {"x":0.0,"y":4.0,},
-    {"x":40.0,"y":4.0,},
-    {"x":40.0,"y":14.0,},
-    {"x":0.0,"y":14.0,},
+    {"x":0.0,"y":0.0,},
+    {"x":64.0,"y":0.0,},
+    {"x":64.0,"y":5.0,},
+    {"x":0.0,"y":5.0,},
   ],
   "physicsStartAwake": true,
-  "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"depth","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"1","varType":0,},
-  ],
+  "properties": [],
   "solid": false,
   "spriteId": {
     "name": "spr_table",
