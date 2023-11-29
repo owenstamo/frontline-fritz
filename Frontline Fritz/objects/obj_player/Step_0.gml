@@ -49,22 +49,26 @@ if (!braking_or_turning) started_braking_at_speed = 0;
 
 #region Crouch
 
-if (_key_crouch) {
+obstacle_above = collision_line(x, bbox_bottom, x, bbox_bottom - min_space_to_uncrouch, obj_impassable_object_parent, false, true);
+
+// When crouching, checks if the ceiling isnt too low to stop crouching
+if (crouching && obstacle_above) can_uncrouch = false;
+else can_uncrouch = true;
+
+if (_key_crouch && can_uncrouch) {
 	crouching = !crouching;
 }
 
 if (crouching) {
     if (_key_crouch) {
-		// This doesn't work, but I'm keeping it in case it does in the future
-        physics_remove_fixture(self, currently_bound_fix);
-        currently_bound_fix = physics_fixture_bind(crouch_fix, self);
+		physics_remove_fixture(id, currently_bound_fix);
+		currently_bound_fix = physics_fixture_bind(crouch_fix, id);
     }
     _target_velocity /= 2;
 }
 else if (!crouching && _key_crouch) {
-	// Same for this
-    physics_remove_fixture(self, currently_bound_fix);
-    currently_bound_fix = physics_fixture_bind(default_fix, self);
+	physics_remove_fixture(id, currently_bound_fix);
+	currently_bound_fix = physics_fixture_bind(default_fix, id);
 }
 
 #endregion
@@ -110,9 +114,9 @@ if (abs(phy_speed_x) <= move_speed && !_key_shift || // If the player is at walk
 
 #region Check grounded
 
-if (place_meeting(x, y+image_yscale, obj_impassable_object_parent))
-	grounded = true
-	
+if (place_meeting(x, bbox_bottom, obj_impassable_object_parent))
+	grounded = true;
+
 if (phy_speed_y != 0)
 	grounded = false;
 	
@@ -122,6 +126,8 @@ if (!grounded)
 #endregion
 
 #region Jump
+
+jumped = false;
 
 if (grounded & !is_power_jumping) {
 	if (crouching) {
@@ -141,16 +147,19 @@ if ((_key_jump_pressed && _key_power_jump && grounded) || _key_jump && is_power_
 	if (current_jump_power > pounce_jump_power + max_jump_adder) {
 		is_power_jumping = false;
 		phy_speed_y = -current_jump_power;
+		jumped = true;
 	}
 } 
 else if (_key_jump && grounded && !is_power_jumping) {
 	if (!crouching) {
 		current_jump_power = jump_power
 		phy_speed_y = -current_jump_power;
+		jumped = true;
 	} 
 	else {
 		current_jump_power = crouching_jump_power
 		phy_speed_y = -crouching_jump_power;
+		jumped = true;
 	}
 	if (_key_jump_pressed) {
 		is_pouncing = true;
@@ -164,9 +173,19 @@ if (_key_jump_released) {
 	is_power_jumping = false;
 	if (grounded) {
 		phy_speed_y = -current_jump_power;
+		jumped = true;
 		grounded = false;
 		braking_or_turning = false;
 	}
+}
+
+if (jumped) {
+	physics_remove_fixture(id, currently_bound_fix);
+	currently_bound_fix = physics_fixture_bind(jump_fix, id);
+}
+else if (grounded && !prev_grounded_state) {
+	physics_remove_fixture(id, currently_bound_fix);
+	currently_bound_fix = physics_fixture_bind(default_fix, id);
 }
 
 #endregion
@@ -328,6 +347,7 @@ if sprite_index = spr_player_brake_3 {
 
 prev_key_right = _key_right;
 prev_key_left = _key_left
+prev_grounded_state = grounded;
 previous_x_velocity = phy_speed_x;
 previous_y_velocity = phy_speed_y;
 
