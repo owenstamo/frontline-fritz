@@ -83,7 +83,7 @@ function scr_draw_item() {
 		if (sprite_index == spr_player_brake_3) {draw_item(9, 7.5);}
 		if (sprite_index == spr_player_turn_1) {draw_item_ext(4, 8.5, object_rotation + 30, 1);}
 		if (sprite_index == spr_player_turn_2) {draw_item_ext(5, 7.5, object_rotation + 60, 1);}
-		if (sprite_index == spr_player_turn_3) {draw_item_ext(-3, 7.5, object_rotation, -1);}
-		if (sprite_index == spr_player_turn_4) {draw_item_ext(-2, 7.5, object_rotation, -1);}
+		if (sprite_index == spr_player_turn_3) {draw_item_ext(-3, 7.5, object_rotation + 90, -1);}
+		if (sprite_index == spr_player_turn_4) {draw_item_ext(-2, 7.5, object_rotation + 90, -1);}
 	}
 }
