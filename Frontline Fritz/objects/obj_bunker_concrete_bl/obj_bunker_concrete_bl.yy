@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_stair",
+  "name": "obj_bunker_concrete_bl",
   "eventList": [],
   "managed": true,
   "overriddenProperties": [],
@@ -27,15 +27,15 @@
   "physicsShapePoints": [
     {"x":0.0,"y":0.0,},
     {"x":10.0,"y":0.0,},
-    {"x":10.0,"y":4.0,},
-    {"x":0.0,"y":4.0,},
+    {"x":10.0,"y":11.0,},
+    {"x":0.0,"y":11.0,},
   ],
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_stair",
-    "path": "sprites/spr_stair/spr_stair.yy",
+    "name": "spr_bunker_concrete_bl",
+    "path": "sprites/spr_bunker_concrete_bl/spr_bunker_concrete_bl.yy",
   },
   "spriteMaskId": null,
   "visible": true,

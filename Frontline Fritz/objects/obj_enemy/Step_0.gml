@@ -70,7 +70,7 @@ if (obstacle != noone) {
     var _height = bbox_bottom - obstacle.bbox_top;
 	var _time_of_flight = (2 * jump_power) / room_gravity
 	
-	var _discriminant = sqrt(jump_power * jump_power - 2 * room_gravity * -height);
+	var _discriminant = sqrt(jump_power * jump_power - 2 * room_gravity * -_height);
 	var _time_to_height_1 = (jump_power + _discriminant) / room_gravity;
 	var _time_to_height_2 = (jump_power - _discriminant) / room_gravity;
 
@@ -81,10 +81,10 @@ if (obstacle != noone) {
 	
 	var _max_jump_distance;
 	
-	if (height > _max_jump_height) _max_jump_distance = 3;
+	if (_height > _max_jump_height) _max_jump_distance = 3;
 	else _max_jump_distance = (abs(phy_speed_x) * 30) * _time_to_height;
 	
-	if (height > _max_jump_height && (bbox_bottom - bbox_top) * climb_height_factor >= _height && place_meeting(x + phy_speed_x * 2, y, obj_impassable_object_parent)) {
+	if (_height > _max_jump_height && (bbox_bottom - bbox_top) * climb_height_factor >= _height && place_meeting(x + phy_speed_x * 2, y, obj_impassable_object_parent)) {
 		is_climbing = true;
 	}
 	if (is_climbing) {	
