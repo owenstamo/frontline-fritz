@@ -22,7 +22,7 @@ if (_player != noone)
     if (!collision_line( x, y, _player.x, _player.y, obj_impassable_object_parent, false, false ) ) status = "chasing";
 	else status = "idle";
 
-	if (place_meeting(x, y, obj_player)) {
+	if (collision_circle(x,y+75, 210, obj_player, false, true)) {
 		status = "killing";
 		killed_player = true;
 	}

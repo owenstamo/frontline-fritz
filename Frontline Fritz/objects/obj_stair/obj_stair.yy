@@ -10,8 +10,8 @@
     "path": "folders/Objects/Building.yy",
   },
   "parentObjectId": {
-    "name": "obj_impassable_object_parent",
-    "path": "objects/obj_impassable_object_parent/obj_impassable_object_parent.yy",
+    "name": "obj_stair_parent",
+    "path": "objects/obj_stair_parent/obj_stair_parent.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,

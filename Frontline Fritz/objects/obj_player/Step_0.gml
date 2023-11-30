@@ -2,6 +2,8 @@
 
 var _key_right = (keyboard_check(ord("D")) || keyboard_check(vk_right));
 var _key_left = (keyboard_check(ord("A")) || keyboard_check(vk_left));
+var _key_up = (keyboard_check(ord("W")));
+var _key_down = (keyboard_check(ord("S")));
 var _key_shift = keyboard_check(vk_lshift);
 var _key_jump = keyboard_check(vk_space);
 var _key_jump_pressed = keyboard_check_pressed(vk_space);
@@ -10,6 +12,12 @@ var _key_power_jump = mouse_check_button(mb_right);
 var _key_crouch = keyboard_check_pressed(ord("C"));
 var _key_store = keyboard_check_pressed(ord("F"));
 
+#endregion
+
+#region Disable Sprite Collision Mask
+
+	mask_index = -1;
+	
 #endregion
 
 #region Set Sprinting
@@ -49,7 +57,7 @@ if (!braking_or_turning) started_braking_at_speed = 0;
 
 #region Crouch
 
-obstacle_above = collision_line(x, bbox_bottom, x, bbox_bottom - min_space_to_uncrouch, obj_impassable_object_parent, false, true);
+obstacle_above = collision_line(x, bbox_top, x, bbox_top - min_space_to_uncrouch, obj_impassable_object_parent, false, true);
 
 // When crouching, checks if the ceiling isnt too low to stop crouching
 if (crouching && obstacle_above) can_uncrouch = false;
@@ -184,9 +192,37 @@ if (jumped) {
 	currently_bound_fix = physics_fixture_bind(jump_fix, id);
 }
 else if (grounded && !prev_grounded_state) {
-	physics_remove_fixture(id, currently_bound_fix);
-	currently_bound_fix = physics_fixture_bind(default_fix, id);
+	if (crouching) {
+		physics_remove_fixture(id, currently_bound_fix);
+		currently_bound_fix = physics_fixture_bind(crouch_fix, id);
+	}
+	else {
+		physics_remove_fixture(id, currently_bound_fix);
+		currently_bound_fix = physics_fixture_bind(default_fix, id);
+	}
 }
+
+#endregion
+
+#region Climb
+
+if (place_meeting(x,y, obj_climbable)) {
+	can_climb = true;
+}
+else can_climb = false;
+
+if (can_climb) {
+	if (_key_up) {
+		phy_speed_y = -climb_speed;
+		climbing = true;
+	}
+	else if (_key_down) {
+		phy_speed_y = climb_speed;
+		climbing = true;
+	}
+	else climbing = false;
+}
+else climbing = false;
 
 #endregion
 
@@ -275,6 +311,15 @@ if (is_power_jumping) {
 		sprite_index = spr_player_pounce_2;
 	}
 }
+
+if (climbing) {
+	sprite_index = spr_player_climb
+	image_speed = climb_image_speed;
+	
+	if (phy_speed_y > 0) image_yscale = -abs(image_yscale);
+	else image_yscale = abs(image_yscale);
+}
+else image_yscale = abs(image_yscale);
 
 #endregion
 

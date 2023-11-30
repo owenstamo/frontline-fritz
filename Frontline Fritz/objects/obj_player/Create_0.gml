@@ -2,7 +2,6 @@
 
 // Define collision shapes
 
-mask_index = -1;
 uncrouch_height = min_space_to_uncrouch;
 can_uncrouch = true;
 
@@ -61,6 +60,9 @@ grounded = true;
 crouching = false;
 // Whether or not the player is sprinting
 sprinting = false;
+// Whether or not the player can climb
+can_climb = false;
+climbing = false;
 
 // Whether or not the player is braking/quickly turning around
 braking_or_turning = false;

@@ -85,5 +85,9 @@ function scr_draw_item() {
 		if (sprite_index == spr_player_turn_2) {draw_item_ext(5, 7.5, object_rotation + 60, 1);}
 		if (sprite_index == spr_player_turn_3) {draw_item_ext(-3, 7.5, object_rotation + 90, -1);}
 		if (sprite_index == spr_player_turn_4) {draw_item_ext(-2, 7.5, object_rotation + 90, -1);}
+		
+		//DRAW FOR CLIMB
+		if (sprite_index == spr_player_climb && image_yscale > 0) {draw_item(3, -7.5);}
+		if (sprite_index == spr_player_climb && image_yscale < 0) {draw_item_ext(2, 6.5, object_rotation + 90, 1);}
 	}
 }
