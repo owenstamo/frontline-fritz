@@ -19,15 +19,13 @@ if (phy_speed_y != 0) {
 
 if (_player != noone)
 {
-    if ( !collision_line( x, y, _player.x, _player.y, obj_impassable_object_parent, false, false ) )
-	{
-    status = "chasing";
-	}
-}
-else status = "idle";
+    if (!collision_line( x, y, _player.x, _player.y, obj_impassable_object_parent, false, false ) ) status = "chasing";
+	else status = "idle";
 
-if (place_meeting(x, y, obj_player)) {
-	status = "killing";
+	if (place_meeting(x, y, obj_player)) {
+		status = "killing";
+		killed_player = true;
+	}
 }
 else status = "idle"
 
@@ -37,8 +35,17 @@ else status = "idle"
 switch (status) {
 
 	case "idle":
+		if (!killed_player) {
+			sprite_index = spr_enemy_idle;
+			image_speed = enemy_idle_imagespeed;
+		}
+		else {
+			sprite_index = spr_enemy_kill;
+			image_speed = enemy_idle_imagespeed;
+		}
 	break;
 	case "chasing":
+	
 		#region Get go to positions
 
 		var _goto_x = _player.x;
@@ -93,10 +100,16 @@ switch (status) {
 		if (!obstacle && place_meeting(x + phy_speed_x * 2, y, obj_impassable_object_parent)) {
 			obstacle = instance_place(x + phy_speed_x * 2, y, obj_impassable_object_parent);
 		}
+		
+		if (place_meeting(bbox_left, bbox_bottom, obj_impassable_object_parent))
+			climb_obstacle = instance_place(bbox_left, bbox_bottom, obj_impassable_object_parent);
+		else if (place_meeting(bbox_right, bbox_bottom, obj_impassable_object_parent))
+			climb_obstacle = instance_place(bbox_right, bbox_bottom, obj_impassable_object_parent);
 
 		if (obstacle != noone) {
 			// Calculate the required jump distance
 		    var _height = bbox_bottom - obstacle.bbox_top;
+			var _climb_height;
 			var _time_of_flight = (2 * jump_power) / room_gravity
 	
 			var _discriminant = sqrt(jump_power * jump_power - 2 * room_gravity * -_height);
@@ -113,8 +126,11 @@ switch (status) {
 			if (_height > _max_jump_height) _max_jump_distance = 3;
 			else _max_jump_distance = (abs(phy_speed_x) * 30) * _time_to_height;
 	
-			if (_height > _max_jump_height && (bbox_bottom - bbox_top) * climb_height_factor >= _height && place_meeting(x + phy_speed_x * 2, y, obj_impassable_object_parent)) {
-				is_climbing = true;
+			if (climb_obstacle != noone) {
+				_climb_height = bbox_bottom - climb_obstacle.bbox_top;
+				if (_climb_height <= (bbox_bottom - bbox_top) * climb_height_factor) {
+					is_climbing = true;
+				}
 			}
 			if (is_climbing) {	
 				phy_speed_y = -climb_speed;
@@ -145,6 +161,18 @@ switch (status) {
 		frames_since_last_stair_step += 1;
 
 		#endregion
+		
+		#region Sprite animation
+			if (phy_speed_x != 0) {
+				sprite_index = spr_enemy_walk;
+				image_speed = enemy_walk_imagespeed * (phy_speed_x / move_speed);
+			}
+			else {
+				sprite_index = spr_enemy_idle;
+				image_speed = enemy_idle_imagespeed;
+			}
+		#endregion
+		
 	break;
 	case "killing":
 		instance_deactivate_object(obj_player);

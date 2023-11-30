@@ -135,6 +135,7 @@
     {"name":"spr_crate","order":7,"path":"sprites/spr_crate/spr_crate.yy",},
     {"name":"obj_grave","order":7,"path":"objects/obj_grave/obj_grave.yy",},
     {"name":"spr_poster","order":10,"path":"sprites/spr_poster/spr_poster.yy",},
+    {"name":"spr_enemy_walk","order":39,"path":"sprites/spr_enemy_walk/spr_enemy_walk.yy",},
     {"name":"spr_gate_closed","order":5,"path":"sprites/spr_gate_closed/spr_gate_closed.yy",},
     {"name":"obj_vent_int","order":2,"path":"objects/obj_vent_int/obj_vent_int.yy",},
     {"name":"spr_blank_underground_fade","order":2,"path":"sprites/spr_blank_underground_fade/spr_blank_underground_fade.yy",},

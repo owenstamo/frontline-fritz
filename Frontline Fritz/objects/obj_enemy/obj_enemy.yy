@@ -28,10 +28,10 @@
   "physicsSensor": false,
   "physicsShape": 1,
   "physicsShapePoints": [
-    {"x":12.0,"y":0.0,},
-    {"x":51.0,"y":0.0,},
-    {"x":51.0,"y":44.0,},
-    {"x":12.0,"y":44.0,},
+    {"x":23.0,"y":16.0,},
+    {"x":41.0,"y":16.0,},
+    {"x":41.0,"y":44.0,},
+    {"x":23.0,"y":44.0,},
   ],
   "physicsStartAwake": true,
   "properties": [
@@ -46,6 +46,8 @@
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"room_gravity","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"200","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"climb_speed","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"4","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"climb_height_factor","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"1.5","varType":0,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"enemy_walk_imagespeed","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"5","varType":0,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"enemy_idle_imagespeed","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"2","varType":0,},
   ],
   "solid": false,
   "spriteId": {

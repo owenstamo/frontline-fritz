@@ -167,6 +167,7 @@
     {"id":{"name":"spr_vent_bl","path":"sprites/spr_vent_bl/spr_vent_bl.yy",},},
     {"id":{"name":"spr_poster","path":"sprites/spr_poster/spr_poster.yy",},},
     {"id":{"name":"obj_AK47","path":"objects/obj_AK47/obj_AK47.yy",},},
+    {"id":{"name":"spr_enemy_walk","path":"sprites/spr_enemy_walk/spr_enemy_walk.yy",},},
     {"id":{"name":"spr_gate_closed","path":"sprites/spr_gate_closed/spr_gate_closed.yy",},},
     {"id":{"name":"obj_vent_int","path":"objects/obj_vent_int/obj_vent_int.yy",},},
     {"id":{"name":"spr_blank_underground_fade","path":"sprites/spr_blank_underground_fade/spr_blank_underground_fade.yy",},},
