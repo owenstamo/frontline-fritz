@@ -28,10 +28,10 @@
   "physicsSensor": false,
   "physicsShape": 1,
   "physicsShapePoints": [
-    {"x":0.0,"y":0.0,},
-    {"x":32.0,"y":0.0,},
-    {"x":32.0,"y":32.0,},
-    {"x":0.0,"y":32.0,},
+    {"x":12.0,"y":0.0,},
+    {"x":51.0,"y":0.0,},
+    {"x":51.0,"y":44.0,},
+    {"x":12.0,"y":44.0,},
   ],
   "physicsStartAwake": true,
   "properties": [
@@ -49,8 +49,8 @@
   ],
   "solid": false,
   "spriteId": {
-    "name": "spr_enemy",
-    "path": "sprites/spr_enemy/spr_enemy.yy",
+    "name": "spr_enemy_idle",
+    "path": "sprites/spr_enemy_idle/spr_enemy_idle.yy",
   },
   "spriteMaskId": null,
   "visible": true,

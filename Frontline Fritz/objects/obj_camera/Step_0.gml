@@ -1,3 +1,5 @@
+follow = instance_nearest(x, y, obj_player);
+
 if (follow != noone)
 {
 	x_to = follow.x + x_offset

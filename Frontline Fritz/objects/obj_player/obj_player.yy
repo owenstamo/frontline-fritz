@@ -55,6 +55,7 @@
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"max_jump_adder","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"5","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"min_space_to_uncrouch","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"70","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"player_height","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"10","varType":0,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"stair_height","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"35","varType":0,},
   ],
   "solid": false,
   "spriteId": {
