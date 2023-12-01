@@ -10,12 +10,12 @@
     "path": "folders/Objects/Items/Non Equippable.yy",
   },
   "parentObjectId": {
-    "name": "obj_impassable_object_parent",
-    "path": "objects/obj_impassable_object_parent/obj_impassable_object_parent.yy",
+    "name": "obj_knockout_parent",
+    "path": "objects/obj_knockout_parent/obj_knockout_parent.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,
-  "physicsDensity": 1.0,
+  "physicsDensity": 0.5,
   "physicsFriction": 0.2,
   "physicsGroup": 1,
   "physicsKinematic": false,
@@ -31,9 +31,7 @@
     {"x":0.0,"y":24.0,},
   ],
   "physicsStartAwake": true,
-  "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"depth","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"1","varType":0,},
-  ],
+  "properties": [],
   "solid": false,
   "spriteId": {
     "name": "spr_crate",

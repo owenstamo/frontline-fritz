@@ -17,7 +17,7 @@
   "physicsAngularDamping": 0.1,
   "physicsDensity": 0.0,
   "physicsFriction": 0.2,
-  "physicsGroup": 0,
+  "physicsGroup": 1,
   "physicsKinematic": false,
   "physicsLinearDamping": 0.1,
   "physicsObject": true,

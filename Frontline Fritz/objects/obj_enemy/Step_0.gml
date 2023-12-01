@@ -17,17 +17,47 @@ if (phy_speed_y != 0) {
 
 #region Determine status
 
-if (_player != noone)
-{
-    if (!collision_line( x, y, _player.x, _player.y, obj_impassable_object_parent, false, false ) ) status = "chasing";
-	else status = "idle";
-
-	if (collision_circle(x,y+75, 210, obj_player, false, true)) {
-		status = "killing";
-		killed_player = true;
+if (knocked_out) {
+	time_elapsed++
+	if (time_elapsed >= knockout_time * room_speed) {
+		knocked_out = false;
+		collapsed = false;
+		phy_active = true;
+		time_elapsed = 0;
 	}
 }
-else status = "idle"
+
+if (killed_player) {
+	time_elapsed++
+	if (time_elapsed >= player_death_time * room_speed) {
+		room_restart();
+	}
+}
+
+if (!knocked_out) {
+	if (_player != noone)
+	{
+	    if (!collision_line( x, y, _player.x, _player.y, obj_impassable_object_parent, false, false ) ) status = "chasing";
+		else if (audio_is_playing(snd_meow_1) || audio_is_playing(snd_meow_2)) status = "chasing";
+		else status = "idle";
+
+		if (collision_circle(x,y+75, 200, obj_player, false, true)) {
+			status = "killing";
+			audio_play_sound(snd_player_death, 0, false, 1, 0, 1);
+			killed_player = true;
+		}
+	}
+	else status = "idle"
+	
+	knockout_instance = collision_circle(x,y+75, 190, obj_knockout_parent, false, true);
+	if (knockout_instance) {
+		collision_speed = knockout_instance.phy_speed_y;
+		if (collision_speed >= min_knockout_collision_speed && !prev_hit) {
+			status = "falling";
+			knocked_out = true;
+		}
+	}
+}
 
 #endregion
 
@@ -35,6 +65,7 @@ else status = "idle"
 switch (status) {
 
 	case "idle":
+		phy_active = true;
 		if (!killed_player) {
 			sprite_index = spr_enemy_idle;
 			image_speed = enemy_idle_imagespeed;
@@ -129,7 +160,7 @@ switch (status) {
 			if (climb_obstacle != noone) {
 				_climb_height = bbox_bottom - climb_obstacle.bbox_top;
 				if (_climb_height <= (bbox_bottom - bbox_top) * climb_height_factor) {
-					is_climbing = true;
+					//is_climbing = true;
 				}
 			}
 			if (is_climbing) {	
@@ -174,8 +205,25 @@ switch (status) {
 		#endregion
 		
 	break;
+	
 	case "killing":
 		instance_deactivate_object(obj_player);
 		sprite_index = spr_enemy_kill;
 	break;
+	
+	case "falling":
+		sprite_index = spr_enemy_fall;
+		if (image_index >= 2) collapsed = true;
+		if (collapsed) { 
+			image_speed = 0;
+			image_index = 2;
+		}
+		else image_speed = enemy_fall_imagespeed
+		phy_active = false;
+		
+	break;
 }
+
+// Set previous values
+
+prev_hit = collision_circle(x,y+75, 190, obj_knockout_parent, false, true);

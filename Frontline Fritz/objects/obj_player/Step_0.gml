@@ -20,6 +20,16 @@ var _key_store = keyboard_check_pressed(ord("F"));
 	
 #endregion
 
+#region Check for Checkpoint
+
+	if (place_meeting(x, y, obj_checkpoint)) {
+		var _checkpoint = instance_place(x, y, obj_checkpoint);
+		scr_set_checkpoint(_checkpoint.x, _checkpoint.y);
+		instance_destroy(_checkpoint);
+	}
+	
+#endregion
+
 #region Set Sprinting
 
 sprinting = _key_shift;

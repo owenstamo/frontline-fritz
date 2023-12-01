@@ -1,5 +1,7 @@
 #region This doesn't work (but I'm keeping it in case it does in the future):
 
+// Define checkpoints:
+
 // Define collision shapes
 
 uncrouch_height = min_space_to_uncrouch;
@@ -96,6 +98,7 @@ current_jump_power = jump_power;
 pounce_jump_power = 0;
 jumped = false;
 just_landed = false;
+killed = false;
 is_power_jumping = false
 is_pouncing = false;
 
@@ -104,3 +107,6 @@ is_holding_item = false;
 equipped_item = noone;
 equipped_item_spr = 0;
 equipped_item_anim = 0;
+
+show_debug_message("x after creation")
+show_debug_message(x)
