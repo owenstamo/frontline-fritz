@@ -16,6 +16,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Fonts","folderPath":"folders/Fonts.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Notes","folderPath":"folders/Notes.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Objects","folderPath":"folders/Objects.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Alert","folderPath":"folders/Objects/Alert.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Building","folderPath":"folders/Objects/Building.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Vent","folderPath":"folders/Objects/Building/Vent.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Effects","folderPath":"folders/Objects/Effects.yy",},
@@ -49,7 +50,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"txgPlayerJump","folderPath":"folders/Sprites/txgPlayerJump.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Alert","folderPath":"folders/Objects/Alert.yy",},
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"quit.webp","CopyToMask":-1,"filePath":"datafiles",},
