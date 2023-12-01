@@ -1,6 +1,9 @@
 cam_width = 1920;
 cam_height = 1080;
 
+x = obj_player.x;
+y = obj_player.y;
+
 follow = noone;
 
 x_to = x
