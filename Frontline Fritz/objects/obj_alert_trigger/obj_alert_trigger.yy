@@ -1,10 +1,9 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_alert",
+  "name": "obj_alert_trigger",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":76,"eventType":8,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
   ],
   "managed": true,
@@ -29,7 +28,13 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": null,
-  "spriteMaskId": null,
+  "spriteId": {
+    "name": "spr_alert_collison_mask",
+    "path": "sprites/spr_alert_collison_mask/spr_alert_collison_mask.yy",
+  },
+  "spriteMaskId": {
+    "name": "spr_alert_collison_mask",
+    "path": "sprites/spr_alert_collison_mask/spr_alert_collison_mask.yy",
+  },
   "visible": true,
 }
