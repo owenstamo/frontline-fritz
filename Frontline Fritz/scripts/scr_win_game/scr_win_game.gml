@@ -7,6 +7,6 @@ function scr_win_game(){
 	for(i = 0; i < array_length(all_items); i++) {
 		total_score += array_get(all_items, i).item_score;
 	}
+	obj_scorekeeper.total_score = total_score;
 	room_goto(rm_win_screen);
-	show_debug_message(total_score)
 }

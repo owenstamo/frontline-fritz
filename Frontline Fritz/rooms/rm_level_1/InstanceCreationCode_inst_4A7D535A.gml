@@ -1,1 +1,1 @@
-set_letter(spr_letter_4, 25);
+set_letter(spr_letter_4, 15);

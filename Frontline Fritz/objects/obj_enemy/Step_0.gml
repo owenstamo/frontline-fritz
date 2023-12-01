@@ -30,7 +30,7 @@ if (knocked_out) {
 if (killed_player) {
 	time_elapsed++
 	if (time_elapsed >= player_death_time * room_speed) {
-		room_restart();
+		room_goto(rm_lose_screen);
 	}
 }
 

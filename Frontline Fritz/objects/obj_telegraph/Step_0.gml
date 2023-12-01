@@ -5,7 +5,7 @@ if (place_meeting(x, y, obj_player)) {
 }
 show_debug_message(image_index)
 if (sprite_index == spr_player_win && image_index >= 58) {
-	room_goto(rm_win_screen);
+	scr_win_game()
 }
 
 
